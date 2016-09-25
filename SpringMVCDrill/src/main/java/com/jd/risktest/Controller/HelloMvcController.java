@@ -1,5 +1,9 @@
 package com.jd.risktest.Controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/hello")
@@ -31,6 +36,20 @@ public class HelloMvcController {
 		return "home";
 	}
 
+	@RequestMapping(value = "/TestModelAndView/{id}", method = RequestMethod.GET)
+	public ModelAndView TestModelAndView(@PathVariable("id") Integer id, ModelAndView mv) {
+		mv.addObject("qqq", id);
+		mv.setViewName("home");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/TestMap", method = RequestMethod.GET)
+	public String TestMap(Map<String, Object> map) {
+		map.put("testMap", Arrays.asList("Tom","Jerry","Mike"));
+		return "testmap";
+	}
+	
+	
 	// 传统方式
 	@RequestMapping("/Traditional")
 	public String helloMvc3(HttpServletRequest request) {

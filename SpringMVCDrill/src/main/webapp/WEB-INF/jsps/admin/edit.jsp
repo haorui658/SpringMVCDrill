@@ -9,8 +9,8 @@
 <body>
 	<form action="<%=request.getContextPath()%>/hello/save" method="post">
 		<div>
-			<span>课程介绍:</span>
-			<textarea id="descrp" name="descrName" rows="5" style="width: 480px"></textarea>
+			<span>课程id:</span>			
+			<textarea id="descrp" name="descrName"  style="width: 480px"></textarea>
 		</div>
 		<div>
 			<input type="submit" id="btnPass" value="提交" />
