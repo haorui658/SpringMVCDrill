@@ -5,8 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>首页标题</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" >
+$(document).ready(function(){
+$("#test").click(function(){
+	$("#test").text("我是一个按钮！")
+	return false;
+});
+})
+</script>
 </head>
 <body>
+<button id="test">test</button>
 <h1>普通的request带参数</h1>
 <a href="/hello/Request?id=123">测试</a>
 <h1>测试path变量参数</h1>
