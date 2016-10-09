@@ -15,7 +15,6 @@ public class Employeehandler {
 	@RequestMapping("/emp")
 	public String listAll(Map<String,Object> map) {
 		map.put("emp", dao.getAll());
-		//map.put("emp", "dfsfsf");
 		return "list";
 	}
 }

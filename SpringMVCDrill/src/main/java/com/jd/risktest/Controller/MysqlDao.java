@@ -9,27 +9,27 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MysqlDao {
 
-	private static Map<Integer, String> departments = null;
+	private static Map<Integer, Employee> departments = null;
 
 	static {
 
-		departments = new HashMap<Integer, String>();
-		departments.put(101, "zhangfeng");
-		departments.put(102, "gaoyuan");
-		departments.put(103, "haoyun");
-		departments.put(104, "wangwu");
+		departments = new HashMap<Integer, Employee>();
+		departments.put(101, new Employee("1","zhangsan","1"));
+		departments.put(102, new Employee("1","gaoyuan","1"));
+		departments.put(103, new Employee("1", "haoyun","1"));
+		departments.put(104, new Employee("1", "wangwu","0"));
 
 	}
 
-	public Collection<String> getAll() {
+	public Collection<Employee> getAll() {
 		return departments.values();
 	}
 
-	public void add(Integer id, String value) {
+	public void add(Integer id, Employee value) {
 		departments.put(id, value);
 	}
 
-	public String get(Integer id) {
+	public Employee get(Integer id) {
 		return departments.get(id);
 	}
 
@@ -37,7 +37,7 @@ public class MysqlDao {
 		departments.remove(id);
 	}
 
-	public void update(Integer id, String value) throws Exception {
+	public void update(Integer id, Employee value) throws Exception {
 		if (departments.containsKey(id)) {
 			departments.put(id, value);
 		} else {
