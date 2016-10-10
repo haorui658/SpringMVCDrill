@@ -32,8 +32,8 @@ public class Employeehandler {
 	}
 	
 	@RequestMapping("/add")
-	public String add(Map<String,Object> map) {	
-		System.out.println(map.get("addemp"));		
+	public String add(Employee emp) {	
+		dao.add(Integer.parseInt(emp.getId()), emp);	
 		return "redirect:/list";
 	}
 }
