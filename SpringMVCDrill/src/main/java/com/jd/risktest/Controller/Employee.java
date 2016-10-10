@@ -6,6 +6,9 @@ package com.jd.risktest.Controller;
  */
 public class Employee {
 
+	public Employee(){
+		
+	}
 	public Employee(String id, String name, String gender) {
 		Id = id;
 		Name = name;

@@ -10,6 +10,7 @@
 $(document).ready(function(){
 $("#test").click(function(){
 	$("#test").text("我是一个按钮！")
+	window.location.href = "/list";
 	return false;
 });
 })
@@ -17,6 +18,8 @@ $("#test").click(function(){
 </head>
 <body>
 <button id="test">test</button>
+
+<a href="/hello/Request?id=123">测试</a>
 <h1>普通的request带参数</h1>
 <a href="/hello/Request?id=123">测试</a>
 <h1>测试path变量参数</h1>

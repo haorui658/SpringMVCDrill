@@ -19,9 +19,21 @@ public class Employeehandler {
 	}
 	
 	@RequestMapping("/delete/{id}")
-	public String listAll(@PathVariable String id) {
+	public String delete(@PathVariable String id) {
 		System.out.println("id====="+id);
 		dao.Delete(Integer.parseInt(id));
+		return "redirect:/list";
+	}
+	
+	@RequestMapping("/input")
+	public String input(Map<String,Object> map) {	
+		map.put("addemp",new Employee() );
+		return "input";
+	}
+	
+	@RequestMapping("/add")
+	public String add(Map<String,Object> map) {	
+		System.out.println(map.get("addemp"));		
 		return "redirect:/list";
 	}
 }

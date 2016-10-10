@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	测试文字
+	<a href="/input">新增</a>
 	<c:if test="${!empty emp}">
 		<table border="1" cellpadding="10">
 			<c:forEach items="${emp}" var="e">
