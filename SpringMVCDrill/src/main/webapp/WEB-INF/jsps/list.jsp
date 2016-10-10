@@ -15,7 +15,8 @@
 				<tr>
 					<td>${e.id}</td>
 					<td>${e.name}</td>
-					<td>${e.gender}</td>					
+					<td>${e.gender}</td>
+					<td><a href="/delete/${e.id}">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -9,37 +9,37 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MysqlDao {
 
-	private static Map<Integer, Employee> departments = null;
+	private static Map<Integer, Employee> employeeMap = null;
 
 	static {
 
-		departments = new HashMap<Integer, Employee>();
-		departments.put(101, new Employee("1","zhangsan","1"));
-		departments.put(102, new Employee("1","gaoyuan","1"));
-		departments.put(103, new Employee("1", "haoyun","1"));
-		departments.put(104, new Employee("1", "wangwu","0"));
+		employeeMap = new HashMap<Integer, Employee>();
+		employeeMap.put(1, new Employee("1","zhangsan","1"));
+		employeeMap.put(2, new Employee("2","gaoyuan","1"));
+		employeeMap.put(3, new Employee("3", "haoyun","1"));
+		employeeMap.put(4, new Employee("4", "wangwu","0"));
 
 	}
 
 	public Collection<Employee> getAll() {
-		return departments.values();
+		return employeeMap.values();
 	}
 
 	public void add(Integer id, Employee value) {
-		departments.put(id, value);
+		employeeMap.put(id, value);
 	}
 
 	public Employee get(Integer id) {
-		return departments.get(id);
+		return employeeMap.get(id);
 	}
 
 	public void Delete(Integer id) {
-		departments.remove(id);
+		employeeMap.remove(id);
 	}
 
 	public void update(Integer id, Employee value) throws Exception {
-		if (departments.containsKey(id)) {
-			departments.put(id, value);
+		if (employeeMap.containsKey(id)) {
+			employeeMap.put(id, value);
 		} else {
 
 			throw new Exception("²»´æÔÚid"+id);
