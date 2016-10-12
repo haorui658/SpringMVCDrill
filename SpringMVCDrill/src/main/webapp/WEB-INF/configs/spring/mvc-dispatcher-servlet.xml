@@ -31,6 +31,7 @@
 	<mvc:annotation-driven />
 
 	<!-- 静态资源处理， css， js， imgs -->
+	<!-- <mvc:default-servlet-handler/>//映射过就找映射过的，没有映射找静态资源-->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 <!-- 配置ViewResolver。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->

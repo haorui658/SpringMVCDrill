@@ -6,8 +6,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" >
+$(function(){
+	$("#delete").click(function(){
+		var href=$(this).attr("href");
+		$("form").attr("action", href).submit();
+		return false;
+	});	
+})
+
+
+</script>
 </head>
 <body>
+<form action="" Method="POST">
+<input type="hidden" name="_method"  value="DELETE"/>
+</form>
 	<a href="/input">新增</a>
 	<c:if test="${!empty emp}">
 		<table border="1" cellpadding="10">
@@ -16,7 +31,7 @@
 					<td>${e.id}</td>
 					<td>${e.name}</td>
 					<td>${e.gender}</td>
-					<td><a href="/delete/${e.id}">删除</a></td>
+					<td><a id="delete" href="/list/${e.id}">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>

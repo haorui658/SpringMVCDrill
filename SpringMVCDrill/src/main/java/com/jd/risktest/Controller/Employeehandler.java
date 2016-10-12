@@ -1,11 +1,13 @@
 package com.jd.risktest.Controller;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class Employeehandler {
@@ -18,10 +20,10 @@ public class Employeehandler {
 		return "list";
 	}
 	
-	@RequestMapping("/delete/{id}")
-	public String delete(@PathVariable String id) {
+	@RequestMapping(value="list/{id}",method=RequestMethod.DELETE)
+	public String delete(@PathVariable Integer id) {
 		System.out.println("id====="+id);
-		dao.Delete(Integer.parseInt(id));
+		dao.Delete(id);
 		return "redirect:/list";
 	}
 	
