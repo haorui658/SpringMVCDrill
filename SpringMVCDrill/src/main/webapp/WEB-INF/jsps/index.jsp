@@ -17,9 +17,8 @@ $("#test").click(function(){
 </script>
 </head>
 <body>
-<button id="test">test</button>
+<button id="test">test</button><br>
 
-<a href="/hello/Request?id=123">测试</a>
 <h1>普通的request带参数</h1>
 <a href="/hello/Request?id=123">测试</a>
 <h1>测试path变量参数</h1>

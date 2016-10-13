@@ -4,13 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>Archetype Created Web Application</display-name>
-<!-- 	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/configs/spring/applicationContext*.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener> -->
+	<!-- <context-param> <param-name>contextConfigLocation</param-name> <param-value>/WEB-INF/configs/spring/applicationContext*.xml</param-value> 
+		</context-param> <listener> <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+		</listener> -->
 	<servlet>
 		<!-- 默认名称路径为WEB-INF下的[servlet-name]-servlet.xml 可以通过初始化参数改变路径 -->
 		<servlet-name>mvc-dispatcher</servlet-name>
@@ -26,13 +22,12 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	
-	 <filter>    
-              <filter-name>HiddenHttpMethodFilter</filter-name>    
-              <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>    
-      </filter>    
-      <filter-mapping>    
-              <filter-name>HiddenHttpMethodFilter</filter-name>    
-              <servlet-name>/*</servlet-name>    
-      </filter-mapping> 
+	<filter>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
