@@ -10,14 +10,14 @@ import org.springframework.stereotype.Repository;
 public class MysqlDao {
 
 	private static Map<Integer, Employee> employeeMap = null;
-
+	private Integer initId = 5;
 	static {
 
 		employeeMap = new HashMap<Integer, Employee>();
-		employeeMap.put(1, new Employee("1","zhangsan","1"));
-		employeeMap.put(2, new Employee("2","gaoyuan","1"));
-		employeeMap.put(3, new Employee("3", "haoyun","1"));
-		employeeMap.put(4, new Employee("4", "wangwu","0"));
+		employeeMap.put(1, new Employee("1", "zhangsan", "zhang", "1"));
+		employeeMap.put(2, new Employee("2", "gaoyuan", "gao", "1"));
+		employeeMap.put(3, new Employee("3", "haoyun", "hao", "1"));
+		employeeMap.put(4, new Employee("4", "wangwu", "wang", "0"));
 
 	}
 
@@ -25,8 +25,11 @@ public class MysqlDao {
 		return employeeMap.values();
 	}
 
-	public void add(Integer id, Employee value) {
-		employeeMap.put(id, value);
+	public void save(Employee value) {
+		if (value.getId() == null) {
+			value.setId((initId++).toString());
+		}
+		employeeMap.put(Integer.parseInt(value.getId()), value);
 	}
 
 	public Employee get(Integer id) {
@@ -42,8 +45,8 @@ public class MysqlDao {
 			employeeMap.put(id, value);
 		} else {
 
-			throw new Exception("不存在id"+id);
-			
+			throw new Exception("不存在id" + id);
+
 		}
 
 	}

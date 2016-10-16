@@ -29,8 +29,10 @@
 				<tr>
 					<td>${e.id}</td>
 					<td>${e.name}</td>
+					<td>${e.lastName}</td>
 					<td>${e.gender}</td>
-					<td><a class="delete" href="/list/${e.id}">删除</a></td>
+					<td><a class="edit" href="/input/${e.id}">Edit</a></td>
+					<td><a class="delete" href="/list/${e.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
