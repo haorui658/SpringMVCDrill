@@ -55,7 +55,6 @@
         <h2 class="form-signin-heading">登录系统</h2>
         <input type="text" name="userName" class="input-block-level" placeholder="账号">
         <input type="password" name="password" class="input-block-level" placeholder="密码">
-<!--         <input type="text" name="verify" class="input-medium" placeholder="验证码"> -->
        
         <p><button class="btn btn-large btn-primary" type="submit">登录</button></p>
     </form>
