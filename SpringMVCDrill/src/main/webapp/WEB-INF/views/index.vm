@@ -1,3 +1,4 @@
+## #set($layout =  "/WEB-INF/layouts/main.vm" )
 <h1>Index</h1>
  
 <h2>Department list</h2>

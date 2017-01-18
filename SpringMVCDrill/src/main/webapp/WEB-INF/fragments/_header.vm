@@ -1,8 +1,9 @@
-<div style="background: #E0E0E0; height: 80px; padding: 5px;">
-  <div style="float: left">
-      <h1>My Site</h1>
-  </div>
-  <div style="float: right; padding: 10px;">
-      Search <input name="search">
-  </div>
-</div> 
+<div class="header">
+
+    <div class="dl-title">
+        <!--<img src="/chinapost/Public/assets/img/top.png">-->
+    </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user">root</span><a href="/chinapost/index.php?m=Public&a=logout" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+</div>
