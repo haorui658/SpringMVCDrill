@@ -24,6 +24,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springversion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springversion}</version>
 		</dependency>
@@ -67,6 +72,20 @@
 			<version>1.2</version>
 			<scope>compile</scope>
 		</dependency>
+		<!--http://mvnrepository.com/artifact/org.apache.velocity/velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		<!--http://mvnrepository.com/artifact/org.apache.velocity/velocity-tools -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>SpringMVCDrill</finalName>

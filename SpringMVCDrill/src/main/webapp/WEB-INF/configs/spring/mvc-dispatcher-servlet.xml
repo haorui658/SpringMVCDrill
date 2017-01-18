@@ -11,9 +11,9 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<mvc:interceptors>
-			<!-- /*拦截当前路径 例如 /add /** 包括路径及其子路径 例如/add/add -->
-			<!-- <mvc:mapping path="/**" /> -->
-			<bean class="com.jd.risktest.Controller.LoginIntercepter"></bean>
+		<!-- /*拦截当前路径 例如 /add /** 包括路径及其子路径 例如/add/add -->
+		<!-- <mvc:mapping path="/**" /> -->
+		<bean class="com.jd.risktest.Controller.LoginIntercepter"></bean>
 	</mvc:interceptors>
 
 	<!-- 本配置文件是工名为mvc-dispatcher的DispatcherServlet使用， 提供其相关的Spring MVC配置 -->
@@ -41,7 +41,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- 配置ViewResolver。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->
-	<bean
+	<!-- <bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="order" value="1" />
 		<property name="mediaTypes">
@@ -54,7 +54,7 @@
 
 		<property name="defaultViews">
 			<list>
-				<!-- JSON View -->
+				JSON View
 				<bean
 					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 				</bean>
@@ -69,16 +69,28 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/jsps/" />
 		<property name="suffix" value=".jsp" />
+	</bean> -->
+
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath">
+			<value>/</value>
+		</property>
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="cache" value="true" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="layoutUrl" value="/WEB-INF/layouts/layout.vm" />
+		<property name="suffix" value=".vm" />
 	</bean>
 
 
-	<!--上传文件200*1024*1024即200M resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="209715200" />
-		<property name="defaultEncoding" value="UTF-8" />
-		<property name="resolveLazily" value="true" />
-	</bean>-->
+	<!--上传文件200*1024*1024即200M resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 <bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+		<property name="maxUploadSize" value="209715200" /> <property name="defaultEncoding" 
+		value="UTF-8" /> <property name="resolveLazily" value="true" /> </bean> -->
 
 
 </beans>

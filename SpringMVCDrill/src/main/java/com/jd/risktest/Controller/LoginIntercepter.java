@@ -25,11 +25,11 @@ public class LoginIntercepter implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
 		   String url = arg0.getRequestURL().toString();
-		
-		if(!url.contains("/Login")&&!url.contains("/doLogin")&&arg0.getSession().getAttribute("user")==null){
-			arg0.getRequestDispatcher("/Login").forward(arg0, arg1);
-			return false;
-		}
+//		
+//		if(!url.contains("/Login")&&!url.contains("/doLogin")&&arg0.getSession().getAttribute("user")==null){
+//			arg0.getRequestDispatcher("/Login").forward(arg0, arg1);
+//			return false;
+//		}
 		return true;
 	}
 

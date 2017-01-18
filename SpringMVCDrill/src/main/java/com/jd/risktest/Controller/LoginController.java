@@ -14,6 +14,12 @@ public class LoginController {
 	@Autowired
 	public HttpSession session;
 	
+	@RequestMapping("/Index")
+	public String Index(HttpSession httpSession) {
+		return "index";
+	}
+	
+	
 	@RequestMapping("/Login")
 	public String toIndex(HttpSession httpSession) {
 		return "Login";
@@ -23,7 +29,7 @@ public class LoginController {
 		
 		if(Objects.equals(userName, "admin")&&Objects.equals(password, "123456")){
 			session.setAttribute("user", userName);
-			return "redirect:/";	
+			return "redirect:index";	
 		}else{
 			System.out.println(userName+":"+password);
 			return "redirect:Login";	
