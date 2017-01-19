@@ -1,6 +1,5 @@
 package com.jd.risktest.Controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -42,15 +41,15 @@ public class HelloMvcController {
 		mv.setViewName("home");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/TestMap", method = RequestMethod.GET)
 	public String TestMap(Map<String, Object> map) {
 		map.put("testMap", Arrays.asList("Tom","Jerry","Mike"));
 		return "testmap";
 	}
-	
-	
-	// ´«Í³·½Ê½
+
+
+	// ä¼ ç»Ÿæ–¹å¼
 	@RequestMapping("/Traditional")
 	public String helloMvc3(HttpServletRequest request) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
@@ -58,13 +57,13 @@ public class HelloMvcController {
 		return "home";
 	}
 
-	// http://localhost:8080/hello/admin?add·ÃÎÊ
+	// http://localhost:8080/hello/admin?addè®¿é—®
 	@RequestMapping(value = "/admin", method = RequestMethod.GET, params = "add")
 	public String Admin() {
 		return "admin/edit";
 	}
 
-	// Ìá½»³Ö¾Ã»¯,Èç¹ûÓënameÏàÍ¬¿ÉÒÔ²»ÓÃ¼ÓÈë@ModelAttribute("descrName")
+	// æäº¤æŒä¹…åŒ–,å¦‚æœä¸nameç›¸åŒå¯ä»¥ä¸ç”¨åŠ å…¥@ModelAttribute("descrName")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String Save(@ModelAttribute("descrName") String descVar, Model model) {
 		System.out.println(descVar);

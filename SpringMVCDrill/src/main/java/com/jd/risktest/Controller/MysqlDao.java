@@ -45,7 +45,7 @@ public class MysqlDao {
 			employeeMap.put(id, value);
 		} else {
 
-			throw new Exception("²»´æÔÚid" + id);
+			throw new Exception("ä¸å­˜åœ¨id" + id);
 
 		}
 

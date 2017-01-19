@@ -19,6 +19,10 @@ public class LoginController {
         return "index";
     }
 
+    @RequestMapping("/main")
+    public String main() {
+        return "main";
+    }
     @RequestMapping("/uim")
     public String uim() {
         return "uim";
@@ -34,7 +38,7 @@ public class LoginController {
 
         if (Objects.equals(userName, "admin") && Objects.equals(password, "123456")) {
             session.setAttribute("user", userName);
-            return "redirect:index";
+            return "redirect:/";
         } else {
             System.out.println(userName + ":" + password);
             return "redirect:Login";

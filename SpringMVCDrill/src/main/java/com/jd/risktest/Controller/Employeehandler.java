@@ -18,25 +18,25 @@ public class Employeehandler {
 	private MysqlDao dao;
 
 	/*
-	 * 所有方法之前执行，key值必须是类名的小写开头字符串
-	 * 
+	 * 鎵�鏈夋柟娉曚箣鍓嶆墽琛岋紝key鍊煎繀椤绘槸绫诲悕鐨勫皬鍐欏紑澶村瓧绗︿覆
+	 *
 	 */
 	@ModelAttribute
 	public void getEmployee(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
 		if (id != null) {
 			map.put("employee", dao.get(id));
-			System.out.println("获取id");
+			System.out.println("鑾峰彇id");
 		}
-		System.out.println("modelAttr调用");
+		System.out.println("modelAttr璋冪敤");
 	}
 	@RequestMapping(value = "list/{id}", method = RequestMethod.PUT)
 	public String EditSave(Employee emp) {
 		dao.save(emp);
 		return "redirect:/list";
 	}
-	
-	
-	
+
+
+
 	@RequestMapping("/list")
 	public String listAll(Map<String, Object> map) {
 		map.put("emp", dao.getAll());
