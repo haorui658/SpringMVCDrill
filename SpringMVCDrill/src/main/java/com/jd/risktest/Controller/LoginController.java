@@ -38,7 +38,7 @@ public class LoginController {
 
         if (Objects.equals(userName, "admin") && Objects.equals(password, "123456")) {
             session.setAttribute("user", userName);
-            return "redirect:/";
+            return "redirect:/main";
         } else {
             System.out.println(userName + ":" + password);
             return "redirect:Login";
