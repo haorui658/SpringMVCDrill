@@ -6,5 +6,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>我是qqq变量，值为${qqq}</body>
+<body>我是qqq变量，值为${user}</body>
 </html>
