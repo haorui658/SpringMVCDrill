@@ -190,7 +190,7 @@
 
         //点击节点生成TAB页
         function setTab(obj) {
-            addTab($(obj).attr('menuid'), $(obj).attr('menuname'), $(obj).attr('menuurl'));
+            window.main.addTab($(obj).attr('menuid'), $(obj).attr('menuname'), $(obj).attr('menuurl'));
             var tobarCurrString = "&nbsp;<a href=" + $(obj).attr('menuurl') + " target=iFrame" + $(obj).attr('menuid') + ">" + $(obj).attr('menuname') + "</a>";
         }
 
