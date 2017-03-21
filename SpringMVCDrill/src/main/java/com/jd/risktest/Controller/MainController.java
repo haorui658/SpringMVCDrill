@@ -15,7 +15,7 @@ public class MainController {
     public HttpSession session;
     
 	@RequestMapping("/")
-	public String toIndex() {
+	public String toMain() {
 		return "main";
 	}
 	
@@ -25,4 +25,9 @@ public class MainController {
     	map.put("user", user);
         return "main";
     }
+
+	@RequestMapping("/index")
+	public String toIndex() {
+		return "index";
+	}
 }

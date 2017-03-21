@@ -16,11 +16,6 @@ public class LoginController {
     @Autowired
     public HttpSession session;
 
-    @RequestMapping("/index")
-    public String Index() {
-        return "index";
-    }    
-
     @RequestMapping("/Login")
     public String toIndex() {
         return "Login";

@@ -1,16 +1,13 @@
-## #set($layout =  "/WEB-INF/layouts/main.vm" )
-<h1>Index</h1>
- 
-<h2>Department list</h2>
-<tableborder="1">
-<tr>
- <th>Dept No</th>
- <th>Dept Name</th>
-</tr>
-#foreach($dept in $departments)
-  <tr>
-   <td>$dept.deptNo</td>
-   <td>$dept.deptName</td>
-  </tr>
-#end
-</table>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>dsadadasd</title>
+
+        <script type="text/javascript" src="/static/assets/js/right.js"></script>
+</head>
+<body  >
+<div id="yuicontainer">
+    ceshi
+</div>
+</body>
