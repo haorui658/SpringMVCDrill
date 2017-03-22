@@ -199,13 +199,13 @@
             data: [
                 {
                     menuid: "1",
-                    menuname: "图文咨询",
-                    menuurl: "ljhy_twzx.html",
-                    tobarString: "图文咨询",
+                    menuname: "UIM权限",
+                    menuurl: "/index",
+                    tobarString: "UIM权限",
                     iconName: "icon-stethoscope",
                     openState: "",
                     activeState: "",
-                    subData: [
+         /*           subData: [
                         {
                             menuid: "12",
                             menuname: "回复咨询1",
@@ -222,7 +222,7 @@
                             openState: "",
                             activeState: ""
                         }
-                    ]
+                    ]*/
                 },
                 {
                     menuid: "3",
