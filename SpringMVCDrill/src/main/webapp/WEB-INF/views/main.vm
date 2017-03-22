@@ -178,7 +178,6 @@
 <script src="/static/assets/plugins/yui/tabview-min.js"></script>
 <script src="/static/assets/js/underscore-min.js"></script>
 <script src="/static/assets/js/template.js"></script>
-<script src="/static/assets/js/right.js"></script>
 
 <script src="/static/assets/js/ace-elements.min.js"></script>
 <script src="/static/assets/js/ace.min.js"></script>
