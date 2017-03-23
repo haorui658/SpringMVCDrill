@@ -199,7 +199,7 @@
                 {
                     menuid: "1",
                     menuname: "UIM权限",
-                    menuurl: "/index",
+                    menuurl: "/UIM/Index",
                     tobarString: "UIM权限",
                     iconName: "icon-stethoscope",
                     openState: "",
