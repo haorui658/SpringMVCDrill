@@ -15,14 +15,14 @@
     <form class="form-inline" method="post" action="/UIM/query">
         <div class="row">
             <div class="col-md-4">
-                <select class="form-control">
+                <select name="resource" class="form-control">
                     <option>天网</option>
                     <option>天网2.0</option>
                 </select>
             </div>
             <div class="col-md-4 input-group">
                 <span class="input-group-addon" id="basic-addon1">ERP</span>
-                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                <input type="text" name="pin" class="form-control" placeholder="Erp" aria-describedby="basic-addon1">
             </div>
             <button type="submit" class="col-md-2 btn btn-primary">查询</button>
     </form>
