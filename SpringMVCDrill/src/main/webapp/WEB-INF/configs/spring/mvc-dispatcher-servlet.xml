@@ -10,6 +10,15 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/configs/risk.properties</value>
+			</list>
+		</property>
+	</bean>
+
 	<mvc:interceptors>
 		<!-- /*拦截当前路径 例如 /add /** 包括路径及其子路径 例如/add/add -->
 		<!-- <mvc:mapping path="/**" /> -->
