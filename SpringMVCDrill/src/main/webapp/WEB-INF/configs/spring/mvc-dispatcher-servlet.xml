@@ -18,25 +18,25 @@
 			</list>
 		</property>
 	</bean>
-
-	<mvc:interceptors>
-		<!-- /*拦截当前路径 例如 /add /** 包括路径及其子路径 例如/add/add -->
-		<!-- <mvc:mapping path="/**" /> -->
-		<!--<bean class="com.jd.risktest.Controller.LoginIntercepter"></bean>-->
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.jd.risktest.Controller.LoginIntercepter">
-				<property name="excludedUrls">
-					<list>
-						<value>/Login</value>
-                        <value>/doLogin</value>
-						<value>/static/</value>
-                        <value>/resources/</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
+	<!--<import resource="Spring-config-bean.xml" />-->
+	<!--<mvc:interceptors>-->
+		<!--&lt;!&ndash; /*拦截当前路径 例如 /add /** 包括路径及其子路径 例如/add/add &ndash;&gt;-->
+		<!--&lt;!&ndash; <mvc:mapping path="/**" /> &ndash;&gt;-->
+		<!--&lt;!&ndash;<bean class="com.jd.risktest.Controller.LoginIntercepter"></bean>&ndash;&gt;-->
+		<!--<mvc:interceptor>-->
+			<!--<mvc:mapping path="/**" />-->
+			<!--<bean class="com.jd.risktest.Controller.LoginIntercepter">-->
+				<!--<property name="excludedUrls">-->
+					<!--<list>-->
+						<!--<value>/Login</value>-->
+                        <!--<value>/doLogin</value>-->
+						<!--<value>/static/</value>-->
+                        <!--<value>/resources/</value>-->
+					<!--</list>-->
+				<!--</property>-->
+			<!--</bean>-->
+		<!--</mvc:interceptor>-->
+	<!--</mvc:interceptors>-->
 
 	<!-- 本配置文件是工名为mvc-dispatcher的DispatcherServlet使用， 提供其相关的Spring MVC配置 -->
 
@@ -48,6 +48,8 @@
 	<context:component-scan base-package="com.jd.risktest">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+								expression="org.springframework.stereotype.Service" />
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
@@ -61,10 +63,6 @@
 	<!-- 静态资源处理， css， js， imgs -->
 	<!--<mvc:default-servlet-handler />    &lt;!&ndash; //映射过就找映射过的，没有映射找静态资源 &ndash;&gt;-->
 	<mvc:resources mapping="/static/**" location="/resources/" />
-	<mvc:resources location="/image/" mapping="/image/**" />
-	<mvc:resources location="/css/" mapping="/css/**" />
-	<mvc:resources location="/js/" mapping="/js/**" />
-	<mvc:resources location="/assets/" mapping="/assets/**/*" />
 
 	<!-- 配置ViewResolver。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->
 	<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> 
