@@ -9,9 +9,9 @@
         <property name="token" value="${uim.auth.token}"/>
     </bean>
     <bean id="risk2" class="com.jd.risktest.Service.Uim">
-        <property name="authAddress" value="${uim.auth.authAddress}"/>
-        <property name="appKey" value="${uim.auth.appKey}"/>
-        <property name="token" value="${uim.auth.token}"/>
+        <property name="authAddress" value="${uim.auth.authAddress.risk2}"/>
+        <property name="appKey" value="${uim.auth.appKey.risk2}"/>
+        <property name="token" value="${uim.auth.token.risk2}"/>
     </bean>
     <bean id="uimService" class="com.jd.risktest.Service.UIMService">
         <property name="resourceMap">

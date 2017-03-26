@@ -28,6 +28,13 @@
     </form>
 </div>
 <div class="row" style="padding: 15px">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">权限码</span>
+        <input type="text" name="code" class="form-control" placeholder="Code" aria-describedby="basic-addon1">
+    </div>
+</div>
+
+<div class="row" style="padding: 15px">
     <textarea class="form-control" rows="20">$!{uimResponse}</textarea>
 </div>
 </div>

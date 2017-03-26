@@ -10,6 +10,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+<!--
 	<bean id="propertyConfigurer"
 		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -18,7 +19,7 @@
 			</list>
 		</property>
 	</bean>
-	<!--<import resource="Spring-config-bean.xml" />-->
+-->
 	<!--<mvc:interceptors>-->
 		<!--&lt;!&ndash; /*拦截当前路径 例如 /add /** 包括路径及其子路径 例如/add/add &ndash;&gt;-->
 		<!--&lt;!&ndash; <mvc:mapping path="/**" /> &ndash;&gt;-->

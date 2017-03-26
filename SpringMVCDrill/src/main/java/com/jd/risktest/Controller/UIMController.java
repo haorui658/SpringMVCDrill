@@ -15,17 +15,18 @@ public class UIMController {
     UIMService uimService;
 
     @RequestMapping("/Index")
-    public String index(Map<String, Object> map) {
-        String reqId = "haorui7";
-        String ResponseText = uimService.getUim("risk2").getUimResponseText(reqId);
-        map.put("uimResponse", ResponseText);
+    public String index() {
         return "uim";
     }
 
     @RequestMapping("/query")
-    public String query(String resource, String pin, Map<String, Object> map) {
-
-        map.put("uimResponse", resource + pin);
+    public String query(String resource, String pin,String code, Map<String, Object> map) {
+       // String ResponseText = uimService.getUim(resource).getUimResponseText(pin);
+        String ResponseText =String.valueOf(System.currentTimeMillis());
+        map.put("uimResponse", ResponseText);
+        map.put("resource",resource);
+        map.put("pin",pin);
+        map.put("code",code);
         return "uim";
     }
 }
