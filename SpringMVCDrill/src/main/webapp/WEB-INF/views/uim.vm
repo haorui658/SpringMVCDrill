@@ -10,33 +10,52 @@
 </head>
 <body>
 
-
 <div class="container" style="padding: 15px">
-    <form class="form-inline" method="post" action="/UIM/query">
-        <div class="row">
-            <div class="col-md-4">
-                <select name="resource" class="form-control">
-                    <option #if($!{resource} == "risk") SELECTED #end value="risk">天网</option>
-                    <option #if($!{resource} == "risk2") SELECTED #end value="risk2">天网2.0</option>
-                </select>
-            </div>
-            <div class="col-md-4 input-group">
-                <span class="input-group-addon" id="basic-addon1">ERP</span>
-                <input type="text" name="pin" value="$!{pin}" class="form-control" placeholder="Erp"
-                       aria-describedby="basic-addon1">
-            </div>
-            <button type="submit" class="col-md-2 btn btn-primary">查询</button>
+    <div class="row">
+        <div class="col-md-4">
+            <select name="resource" id="resource" class="form-control">
+                <option value="risk">天网</option>
+                <option value="risk2">天网2.0</option>
+            </select>
         </div>
-        <div class="row" style="padding: 15px">
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">权限码</span>
-                <input type="text" name="codejudge" value="$!{codejudge}" class="form-control" placeholder="Code"
-                       aria-describedby="basic-addon1">
-            </div>
+        <div class="col-md-4 input-group">
+            <span class="input-group-addon" id="basic-addon1">ERP</span>
+            <input type="text" name="pin" id="pin" class="form-control" placeholder="Erp"
+                   aria-describedby="basic-addon1">
         </div>
-    </form>
+        <button id="query" class="col-md-2 btn btn-primary">查询</button>
+    </div>
     <div class="row" style="padding: 15px">
-        <textarea class="form-control" rows="20">$!{uimResponse}</textarea>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">权限码</span>
+            <input type="text" name="codejudge" class="form-control" placeholder="Code"
+                   aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="row" style="padding: 15px">
+        <textarea id="response" class="form-control" rows="20">$!{uimResponse}</textarea>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#query").click(function () {
+            $("#response").val("");
+            var resource = $("#resource").val();
+            var name = $("#pin").val();
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "json",
+                url: "/UIM/queryCode",
+                data: {pin: name, resource: resource},
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (data) {
+                    $("#response").val(data.uimResponse);
+                    return false;
+                }
+            });
+        });
+    });
+</script>
 </body>
