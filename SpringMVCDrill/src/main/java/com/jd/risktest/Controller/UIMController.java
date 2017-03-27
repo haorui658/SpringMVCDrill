@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.jd.risktest.Service.*;
 
@@ -20,13 +19,13 @@ public class UIMController {
     }
 
     @RequestMapping("/query")
-    public String query(String resource, String pin,String code, Map<String, Object> map) {
-       // String ResponseText = uimService.getUim(resource).getUimResponseText(pin);
-        String ResponseText =String.valueOf(System.currentTimeMillis());
+    public String query(String resource, String pin, String codejudge, Map<String, Object> map) {
+        String ResponseText = uimService.getUim(resource).getUimResponseText(pin);
+        // String ResponseText =String.valueOf(System.currentTimeMillis());
         map.put("uimResponse", ResponseText);
-        map.put("resource",resource);
-        map.put("pin",pin);
-        map.put("code",code);
+        map.put("resource", resource);
+        map.put("pin", pin);
+        map.put("codejudge", codejudge);
         return "uim";
     }
 }
