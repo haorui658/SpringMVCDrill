@@ -53,6 +53,9 @@
                 success: function (data) {
                     $("#response").val(data.uimResponse);
                     return false;
+                },
+                error: function (data,status,e) {
+                    alert(e.message);
                 }
             });
         });

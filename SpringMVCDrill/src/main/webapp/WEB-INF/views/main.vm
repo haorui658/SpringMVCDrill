@@ -226,7 +226,7 @@
                 {
                     menuid: "3",
                     menuname: "电话咨询",
-                    menuurl: "ljhy_dhzx.html",
+                    menuurl: "/MQ/Index",
                     tobarString: "电话咨询",
                     iconName: "icon-phone",
                     openState: "",
