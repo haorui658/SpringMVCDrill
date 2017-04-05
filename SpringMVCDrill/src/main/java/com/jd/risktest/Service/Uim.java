@@ -3,6 +3,7 @@ package com.jd.risktest.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,13 +11,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -65,36 +69,46 @@ public class Uim {
 //	private static final String AUTHAPPROOTMENUS = "uim.auth.res.getAuthAppChildMenus";// 获取一级菜单
 //	private static final String AUTHDATA = "uim.auth.res.getAuthData";// 获取数据权限
 
-    public boolean PermissionTest(String reqId, String isExistCode) throws Exception {
-        String method = USERAUTHTICKET;
-        String ReponseText = getUimResponseText(method, reqId);
-        //System.out.println(ReponseText);
-        JSONObject jsonObject = JSON.parseObject(ReponseText).getJSONObject("authTicket.get.response");
-        if (jsonObject.getIntValue("resStatus") == 200) {
-            JSONObject jsonObject2 = jsonObject.getJSONObject("authTicket");
-            JSONArray jsonArray = jsonObject2.getJSONArray("authCodes");
-            for (int i = 0; i < jsonArray.size(); i++) {
-                if (isExistCode.equals(jsonArray.get(i))) {
-                    return true;
-                    //System.out.println("用户"+reqId+"有"+isExistCode+"权限");
-                }
-            }
-        } else {
-            throw new Exception("UIM调用异常");
-        }
-        return false;
-    }
 
     public String getUimResponseText(String reqId) {
-        String reponse = "";
+
         String method = USERAUTHTICKET;
         try {
-            reponse = getUimResponseText(method, reqId);
+            UrlEncodedFormEntity entity = getUrlEntity(reqId, method);
+            String reponse=sendGet(authAddress,entity);
+            return reponse;
         } catch (Exception e) {
-            reponse = e.getMessage();
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        return reponse;
+        return "";
     }
+    private UrlEncodedFormEntity getUrlEntity(String reqId, String method) throws UnsupportedEncodingException {
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+        formparams.add(new BasicNameValuePair("req_path", authAddress));
+        formparams.add(new BasicNameValuePair("format", "json"));
+        formparams.add(new BasicNameValuePair("req_method", "POST"));
+        formparams.add(new BasicNameValuePair("app_key", appKey));
+        formparams.add(new BasicNameValuePair("method", method));
+        formparams.add(new BasicNameValuePair("token", token));
+        formparams.add(new BasicNameValuePair("v", "2.0"));
+        formparams.add(new BasicNameValuePair("fields", ""));
+
+        String random = new Random().nextInt(1000000000) + "";
+        formparams.add(new BasicNameValuePair("random", random));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String timeStamp = format.format(new Date());
+        formparams.add(new BasicNameValuePair("timestamp", timeStamp));
+        String sign = generate(appKey, token, timeStamp, random);
+        formparams.add(new BasicNameValuePair("sign", sign));
+        formparams.add(new BasicNameValuePair("reqId", reqId));
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams, "utf-8");
+        return entity;
+    }
+
+
+
 
     public String getUimResponseText(String method, String reqId) throws IOException {
         List<NameValuePair> formparams = new ArrayList<NameValuePair>();
@@ -164,7 +178,6 @@ public class Uim {
         if ((null == data) || ("".equals(data))) {
             return "";
         }
-
         char[] chars = data.toCharArray();
         byte[] bytes = new byte[chars.length];
 
@@ -188,5 +201,32 @@ public class Uim {
             e.printStackTrace();
         }
         return result.toString();
+    }
+
+    public static String sendGet(String url, UrlEncodedFormEntity urlEntity) throws Exception {
+
+        if (urlEntity != null) {
+            url += "?" + EntityUtils.toString(urlEntity, "utf-8");
+        }
+
+        HttpGet httpGet = new HttpGet(url);
+
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpResponse response = httpclient.execute(httpGet);
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode != 200) {
+            httpGet.abort();
+            throw new RuntimeException("HttpClient,error status code :" + statusCode);
+        }
+        HttpEntity entity = response.getEntity();
+        String result = null;
+        if (entity != null) {
+            result = EntityUtils.toString(entity, "utf-8");
+            EntityUtils.consume(entity);
+            response.close();
+            return result;
+        } else {
+            return null;
+        }
     }
 }
