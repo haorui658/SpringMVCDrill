@@ -9,10 +9,10 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <springversion>4.2.6.RELEASE</springversion>
+        <springversion>4.3.7.RELEASE</springversion>
         <slf4j.version>1.7.6</slf4j.version>
         <jackson.version>2.5.4</jackson.version>
-
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
@@ -91,11 +91,6 @@
             <version>1.2.28</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${springversion}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -106,11 +101,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.11.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
