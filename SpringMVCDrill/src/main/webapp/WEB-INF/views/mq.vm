@@ -25,7 +25,8 @@
             <input type="text" name="pin" id="pin" class="form-control" placeholder="Erp"
                    aria-describedby="basic-addon1">
         </div>
-        <button id="query" class="col-md-2 btn btn-primary">查询</button>
+        <a href="/MQ/add">test</a>
+        <button id="query" class="col-md-2 btn btn-primary">新增</button>
     </div>
     <div class="row" style="padding: 15px">
         <div class="input-group">
