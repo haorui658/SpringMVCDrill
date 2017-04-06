@@ -17,6 +17,7 @@ public class MQInfo {
     private String name;
 
     private String app;
+
     private String topic;
 
     @Temporal(TemporalType.TIMESTAMP)

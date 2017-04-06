@@ -1,5 +1,6 @@
 package com.jd.risktest.Controller;
 
+import com.alibaba.fastjson.JSON;
 import com.jd.risktest.Model.MQInfo;
 import com.jd.risktest.Service.MqService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,16 @@ public class MQController {
     @RequestMapping("/add")
     public String addmq() {
 
-        MQInfo info= new MQInfo();
+        MQInfo info = new MQInfo();
         info.setName("test");
         info.setTopic("testTopic");
         info.setCreateDate(new Date());
         service.save(info);
         return "mq";
+    }
+
+    @RequestMapping(value = "/query", produces = {"application/json;charset=UTF-8"})
+    public String queryMq() {
+        return JSON.toJSONString(service.findAll());
     }
 }
