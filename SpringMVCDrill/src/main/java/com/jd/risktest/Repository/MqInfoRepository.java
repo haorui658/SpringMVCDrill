@@ -1,5 +1,6 @@
-package com.jd.risktest.Model;
+package com.jd.risktest.Repository;
 
+import com.jd.risktest.Model.MQInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

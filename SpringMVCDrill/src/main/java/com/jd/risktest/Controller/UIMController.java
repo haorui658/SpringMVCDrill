@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/UIM")
 public class UIMController {
     @Autowired
-    UIMService uimService;
+    Map<String, UimService> uimServiceMap;
 
     @RequestMapping("/Index")
     public String index() {
@@ -24,7 +24,7 @@ public class UIMController {
     @Obsolete
     @RequestMapping("/query")
     public String query(String resource, String pin, String codejudge, Map<String, Object> map) {
-        String ResponseText = uimService.getUim(resource).getUimResponseText(pin);
+        String ResponseText = uimServiceMap.get(resource).getUimResponseText(pin);
         // String ResponseText =String.valueOf(System.currentTimeMillis());
         map.put("uimResponse", ResponseText);
         map.put("resource", resource);
@@ -34,9 +34,9 @@ public class UIMController {
     }
 
     @ResponseBody
-    @RequestMapping("/queryCode")
+    @RequestMapping(value = "/queryCode", produces = {"application/json;charset=UTF-8"})
     public String queryCode(String resource, String pin, String codejudge, Map<String, Object> map) {
-        String ResponseText = uimService.getUim(resource).getUimResponseText(pin);
+        String ResponseText = uimServiceMap.get(resource).getUimResponseText(pin);
         // String ResponseText =String.valueOf(System.currentTimeMillis());
         map.put("uimResponse", ResponseText);
         return JSON.toJSONString(map);
