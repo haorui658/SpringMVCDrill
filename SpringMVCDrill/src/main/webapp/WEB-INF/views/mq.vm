@@ -29,7 +29,6 @@
                 <td>No</td>
                 <td>姓名</td>
                 <td>门派</td>
-                <td>朝代</td>
                 <td>性别</td>
                 <td>职业</td>
                 <td>操作</td>
@@ -97,28 +96,15 @@
             "columns": [
                 {"data": "id"},
                 {"data": "name"},
-                {"data": "corpname"},
-                {"data": "dynasty"},
-                {"data": "gender"},
-                {"data": "job"},
+                {"data": "app"},
+                {"data": "topic"},
+                {"data": "createDate"},
                 {"data": null}
             ],
-            //填充的数据，这里用的是静态数据，数据源可以来自前台，也可以来自服务器
-            "data": [
-                {"id": "0", "name": "黄蓉", "corpname": "丐帮", "dynasty": "南宋", "gender": "女", "job": "丐帮帮主"},
-                {"id": "1", "name": "郭靖", "corpname": "丐帮", "dynasty": "南宋", "gender": "男", "job": "抗金领袖"},
-                {"id": "2", "name": "杨过", "corpname": "古墓派", "dynasty": "南宋", "gender": "男", "job": "神雕侠"},
-                {"id": "3", "name": "李莫愁", "corpname": "古墓派", "dynasty": "南宋", "gender": "女", "job": "反派"},
-                {"id": "4", "name": "任我行", "corpname": "日月神教", "dynasty": "不明", "gender": "男", "job": "日月神教教主"},
-                {"id": "5", "name": "令狐冲", "corpname": "华山派", "dynasty": "不明", "gender": "男", "job": "华山派大弟子"},
-                {"id": "6", "name": "岳不群", "corpname": "华山派", "dynasty": "不明", "gender": "男", "job": "华山派掌门"},
-                {"id": "7", "name": "左冷禅", "corpname": "嵩山派", "dynasty": "不明", "gender": "男", "job": "嵩山派掌门"},
-                {"id": "8", "name": "张无忌", "corpname": "明教", "dynasty": "元朝", "gender": "男", "job": "明教教主"},
-                {"id": "9", "name": "韦小宝", "corpname": "天地会", "dynasty": "清朝", "gender": "男", "job": "青木堂堂主"},
-                {"id": "10", "name": "康熙", "corpname": "清政府", "dynasty": "清朝", "gender": "男", "job": "皇帝"},
-                {"id": "11", "name": "赵敏", "corpname": "元政府", "dynasty": "元朝", "gender": "女", "job": "郡主"},
-                {"id": "12", "name": "张三丰", "corpname": "武当派", "dynasty": "元朝", "gender": "男", "job": "武当创始人"}
-            ]
+            ajax: {
+                url: '/MQ/query',
+                dataSrc: ''
+            }
         });
 
 
