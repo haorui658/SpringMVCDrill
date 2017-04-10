@@ -227,39 +227,40 @@
                     menuid: "3",
                     menuname: "MQ消息",
                     menuurl: "/MQ/Index",
-                    tobarString: "电话咨询",
+                    tobarString: "MQ消息",
                     iconName: "icon-phone",
                     openState: "",
                     activeState: ""
                 },
                 {
                     menuid: "4",
-                    menuname: "病人库",
-                    menuurl: "ljhy_brk.html",
-                    tobarString: "病人库",
+                    menuname: "接口测试",
+                    menuurl: "Interface/Index",
+                    tobarString: "接口测试",
                     iconName: "icon-inbox",
                     openState: "",
                     activeState: "",
                     subData: [
                         {
                             menuid: "41",
-                            menuname: "患者信息",
-                            menuurl: "ljhy_hzxx.html",
-                            tobarString: "患者信息",
+                            menuname: "Http请求",
+                            menuurl: "/Http/Index",
+                            tobarString: "Http请求",
                             openState: "",
                             activeState: ""
                         }
                     ]
-                },
-                {
-                    menuid: "6",
-                    menuname: "我的账户",
-                    menuurl: "ljhy_wdzh.html",
-                    tobarString: "我的账户",
-                    iconName: "icon-user",
-                    openState: "",
-                    activeState: ""
                 }
+//                ,
+//                {
+//                    menuid: "6",
+//                    menuname: "我的账户",
+//                    menuurl: "ljhy_wdzh.html",
+//                    tobarString: "我的账户",
+//                    iconName: "icon-user",
+//                    openState: "",
+//                    activeState: ""
+//                }
             ]
         };
         //模板渲染

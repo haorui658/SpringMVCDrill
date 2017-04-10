@@ -1,16 +1,12 @@
 package com.jd.risktest.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by gooo on 2017/4/10.
  */
-//@Entity
+@Entity
 public class HttpRequestInfo {
 
 
@@ -18,17 +14,22 @@ public class HttpRequestInfo {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long Id;
 
-    private String name;
-
     private String category;
+
+    private String name;
 
     private String url;
 
     private String method;//get post
 
-    private Map<String,String> parameter;
+    private String parameter;
 
     private Integer cookieType;
+
+    private String creater;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
 
     private String remark;
 
