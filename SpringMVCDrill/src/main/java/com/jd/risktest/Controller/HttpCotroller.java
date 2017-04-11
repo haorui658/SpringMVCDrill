@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Date;
 
 /**
- * Created by gooo on 2017/4/11.
+ * Created by cdhaorui on 2017/4/11.
  */
 @Controller
 @RequestMapping("/Http")
@@ -24,14 +24,18 @@ public class HttpCotroller {
 
     @RequestMapping("/Index")
     public String index() {
-        return "http";
+        return "http/index";
     }
 
     @RequestMapping("/add")
-    public String add(HttpRequestInfo info) {
+    public String add() {
+        return "http/add";
+    }
 
+    @RequestMapping("/save")
+    public String save(HttpRequestInfo info) {
         service.save(info);
-        return "http";
+        return "http/index";
     }
 
     @ResponseBody
