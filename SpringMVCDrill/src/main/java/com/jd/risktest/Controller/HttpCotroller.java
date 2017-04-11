@@ -7,6 +7,7 @@ import com.jd.risktest.Service.HttpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
@@ -15,14 +16,14 @@ import java.util.Date;
  * Created by cdhaorui on 2017/4/11.
  */
 @Controller
-@RequestMapping("/Http")
+@RequestMapping("/http")
 public class HttpCotroller {
 
 
     @Autowired
     private HttpService service;
 
-    @RequestMapping("/Index")
+    @RequestMapping("/index")
     public String index() {
         return "http/index";
     }
@@ -32,9 +33,10 @@ public class HttpCotroller {
         return "http/add";
     }
 
-    @RequestMapping("/save")
+    @RequestMapping(value="/save",method = RequestMethod.POST)
     public String save(HttpRequestInfo info) {
-        service.save(info);
+      System.out.println(JSON.toJSON(info));
+       // service.save(info);
         return "http/index";
     }
 
