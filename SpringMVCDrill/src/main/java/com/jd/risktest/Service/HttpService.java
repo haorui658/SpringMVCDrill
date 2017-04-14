@@ -18,7 +18,7 @@ public class HttpService {
     private HttpRepository HttpDao;
 
     public void save(HttpRequestInfo info) {
-        HttpDao.save(info);
+        HttpDao.saveAndFlush(info);
     }
 
     public void delete(Long id) {

@@ -189,6 +189,8 @@
 
         //点击节点生成TAB页
         function setTab(obj) {
+            var url=$(obj).attr('menuurl');
+            if(url=="")return;
             window.main.addTab($(obj).attr('menuid'), $(obj).attr('menuname'), $(obj).attr('menuurl'));
             var tobarCurrString = "&nbsp;<a href=" + $(obj).attr('menuurl') + " target=iFrame" + $(obj).attr('menuid') + ">" + $(obj).attr('menuname') + "</a>";
         }
@@ -235,7 +237,7 @@
                 {
                     menuid: "4",
                     menuname: "接口测试",
-                    menuurl: "Interface/Index",
+//                    menuurl: "Interface/Index",
                     tobarString: "接口测试",
                     iconName: "icon-inbox",
                     openState: "",

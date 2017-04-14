@@ -1,6 +1,7 @@
 package com.jd.risktest.Controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.jd.risktest.Model.HttpRequestInfo;
 import com.jd.risktest.Model.MQInfo;
 import com.jd.risktest.Service.HttpService;
@@ -38,23 +39,40 @@ public class HttpCotroller {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable("id") Long id, Map<String, Object> map) {
-        HttpRequestInfo info=service.findById(id);
-        map.put("editInfo",info);
+        HttpRequestInfo info = service.findById(id);
+        map.put("editInfo", info);
         return "http/add";
     }
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(HttpRequestInfo info) {
-       // System.out.println(JSON.toJSON(info));
+        System.out.println(JSON.toJSON(info));
         //info.setCreateTime(new Date());
-        service.save(info);
+        try {
+            service.save(info);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "http/index";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/query", produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    public String delete(@PathVariable("id") Long id) {
+        try {
+            service.delete(id);
+            return "删除成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/query", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public String queryMq() {
-        return JSON.toJSONString(service.findAll());
+
+        return JSON.toJSONString(service.findAll(), SerializerFeature.WriteNullStringAsEmpty);
     }
 }
