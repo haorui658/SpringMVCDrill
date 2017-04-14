@@ -12,7 +12,7 @@ public class HttpRequestInfo {
 
     @javax.persistence.Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     private String category;
 
@@ -33,12 +33,15 @@ public class HttpRequestInfo {
 
     private String remark;
 
+    private String expectResponse;
+
+
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public String getCategory() {
@@ -121,5 +124,4 @@ public class HttpRequestInfo {
         this.expectResponse = expectResponse;
     }
 
-    private String expectResponse;
 }

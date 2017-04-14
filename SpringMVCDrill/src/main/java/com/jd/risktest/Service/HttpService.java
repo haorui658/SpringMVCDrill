@@ -33,5 +33,7 @@ public class HttpService {
         return HttpDao.findAll();
     }
 
-
+    public HttpRequestInfo findById(Long id) {
+        return HttpDao.findById(id);
+    }
 }

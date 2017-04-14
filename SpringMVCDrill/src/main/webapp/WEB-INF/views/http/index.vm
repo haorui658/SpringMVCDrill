@@ -19,8 +19,7 @@
             <input type="text" name="pin" id="pin" class="form-control" placeholder="Erp"
                    aria-describedby="basic-addon1">
         </div>
-        <a href="/http/add">test</a>
-        <button id="query" class="col-md-2 btn btn-primary">新增</button>
+        <a href="/http/add"> <button id="query" class="col-md-2 btn btn-primary">新增</button></a>
     </div>
     <div class="row table-responsive" style="padding: 15px">
         <table id="main" class="table">
@@ -29,8 +28,9 @@
                 <td>No</td>
                 <td>类别</td>
                 <td>名称</td>
+                <td>URL</td>
                 <td>创建人</td>
-                <td>结果</td>
+                <td>创建时间</td>
                 <td>操作</td>
             </tr>
             </thead>
@@ -86,7 +86,8 @@
                     // return后边是我们希望在指定列填入的按钮代码
                     "targets": -1,
                     "render": function (data, type, row, meta) {
-                        return "<input type = 'button' id = 'delBtn' value = '删除'>" +
+                        return "<input type = 'button' id = 'editBtn' value = '编辑'>" +
+                                "<input type = 'button' id = 'delBtn' value = '删除'>" +
                                 "<input type = 'button' id = 'sendBtn' value = '发送'  data-toggle='modal' data-target='#myModal'>"// onclick=popSendWindow("+row.id+")> "
                     }
                 }
@@ -97,12 +98,13 @@
                 {"data": "id"},
                 {"data": "category"},
                 {"data": "name"},
+                {"data": "url"},
                 {"data": "creater"},
                 {"data": "createTime"},
                 {"data": null}
             ],
             ajax: {
-                url: '/Http/query',
+                url: '/http/query',
                 dataSrc: ''
             }
         });
@@ -116,6 +118,13 @@
             var name = $("table#main").find("tr").eq(row).find("td").eq(1).text();
             var job = $("table#main").find("tr").eq(row).find("td").eq(5).text();
             alert(row + name + "是" + job);
+        });
+        //为我们生成的按钮绑定方法，这里是弹出姓名和职业的对话框
+        $("#main tbody").on("click", "#editBtn", function () {
+            //获取行
+            var row = $("table#main tr").index($(this).closest("tr"));
+            var id = $("table#main").find("tr").eq(row).find("td").eq(0).text();
+            window.location.href="/http/edit/"+id;
         });
     });
 
