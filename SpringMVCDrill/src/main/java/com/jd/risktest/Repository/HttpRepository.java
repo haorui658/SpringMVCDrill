@@ -9,6 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface HttpRepository extends JpaRepository<HttpRequestInfo, Long> {
 
-    HttpRequestInfo findById(Long Id);
 
 }

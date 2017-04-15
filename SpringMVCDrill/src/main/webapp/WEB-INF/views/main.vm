@@ -205,25 +205,7 @@
                     tobarString: "UIM权限",
                     iconName: "icon-stethoscope",
                     openState: "",
-                    activeState: "",
-         /*           subData: [
-                        {
-                            menuid: "12",
-                            menuname: "回复咨询1",
-                            menuurl: "/index",
-                            tobarString: "回复咨询",
-                            openState: "",
-                            activeState: ""
-                        },
-                        {
-                            menuid: "13",
-                            menuname: "回复咨询2",
-                            menuurl: "http://www.cnblogs.com/leyi",
-                            tobarString: "回复咨询",
-                            openState: "",
-                            activeState: ""
-                        }
-                    ]*/
+                    activeState: ""
                 },
                 {
                     menuid: "3",

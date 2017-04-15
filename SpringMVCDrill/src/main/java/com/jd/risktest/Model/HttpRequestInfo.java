@@ -11,7 +11,7 @@ public class HttpRequestInfo {
 
 
     @javax.persistence.Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String category;
@@ -32,6 +32,10 @@ public class HttpRequestInfo {
     private Date createTime;
 
     private String remark;
+
+    private String latestResult;
+
+    private String latestResponse;
 
     private String expectResponse;
 
@@ -124,4 +128,19 @@ public class HttpRequestInfo {
         this.expectResponse = expectResponse;
     }
 
+    public String getLatestResult() {
+        return latestResult;
+    }
+
+    public void setLatestResult(String latestResult) {
+        this.latestResult = latestResult;
+    }
+
+    public String getLatestResponse() {
+        return latestResponse;
+    }
+
+    public void setLatestResponse(String latestResponse) {
+        this.latestResponse = latestResponse;
+    }
 }
