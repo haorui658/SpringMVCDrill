@@ -19,7 +19,7 @@ public class HttpRequestInfo {
     private String name;
 
     private String url;
-
+    @Column(length=10)
     private String method;//get post
 
     private String parameter;

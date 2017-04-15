@@ -123,8 +123,13 @@
             if (confirm("您确定要删除该条记录吗?")) {
                 $.post("/http/del/" + id,
                         function (data, status) {
-                            alert("Data: " + data + "\nStatus: " + status);
-                        });
+
+                            if (status == 'success') {
+                                var table = $('#main').DataTable();
+                                $("table#main tr").index($(this).remove().draw();
+                            }
+                            alert(data);
+                        }, 'text');
             }
 
         });
