@@ -37,7 +37,7 @@
                        value="${editInfo.parameter}"#end>
                 <label for="cookieTypeId">Cookie类型</label>
                 <input class="form-control" type="text" name="cookieType" id="cookieTypeId"#if($editInfo)
-                       value="${editInfo.cookieType}"#end>
+                       value="$!{editInfo.cookieType}"#end>
                 <label for="createrId">创建人</label>
                 <input class="form-control" type="text" name="creater" id="createrId"#if($editInfo)
                        value="${editInfo.creater}"#end>

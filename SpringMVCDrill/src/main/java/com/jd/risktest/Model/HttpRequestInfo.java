@@ -10,7 +10,7 @@ import java.util.Date;
 public class HttpRequestInfo {
 
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

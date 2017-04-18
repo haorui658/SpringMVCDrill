@@ -33,6 +33,7 @@
                 <td>URL</td>
                 <td>创建人</td>
                 <td>创建时间</td>
+                <td>最新结果</td>
                 <td>操作</td>
             </tr>
             </thead>
@@ -103,6 +104,7 @@
                 {"data": "url"},
                 {"data": "creater"},
                 {"data": "createTime"},
+                {"data": "latestResult"},
                 {"data": null}
             ],
             "ajax": {
@@ -123,10 +125,8 @@
             if (confirm("您确定要删除该条记录吗?")) {
                 $.post("/http/del/" + id,
                         function (data, status) {
-
                             if (status == 'success') {
-                                var table = $('#main').DataTable();
-                                $("table#main tr").index($(this).remove().draw();
+                                table.find("tr").eq(row).remove().draw();
                             }
                             alert(data);
                         }, 'text');

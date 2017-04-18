@@ -41,10 +41,6 @@ public class HttpService {
         repository.delete(id);
     }
 
-    public void update(HttpRequestInfo info) {
-        repository.save(info);
-    }
-
     public Iterable<HttpRequestInfo> findAll() {
         return repository.findAll();
     }
@@ -70,7 +66,7 @@ public class HttpService {
         } else {
             requestInfo.setLatestResult("Fail");
         }
-        update(requestInfo);
+        save(requestInfo);
 
         return requestInfo.getLatestResponse();
     }
