@@ -6,9 +6,16 @@
     <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="/static/assets/js/jquery.min.js"></script>
     <script src="/static/assets/js/bootstrap.min.js"></script>
-
     <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"/>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="/static/assets/js/handlebars.min.js"></script>
+    <!--定义操作列按钮模板-->
+    <script id="tpl" type="text/x-handlebars-template">
+        {{#each buttons}}
+        <button type="button" class="btn btn-{{this.type}} btn-sm" id="{{this.id}}" {{\#if this.target}}
+                data-toggle="modal" data-target="{{this.target}}" {{/if}}>{{this.name}}</button>
+        {{/each}}
+    </script>
 </head>
 <body>
 
@@ -24,7 +31,7 @@
         </a>
     </div>
     <div class="row table-responsive" style="padding: 15px">
-        <table id="main" class="table">
+        <table id="main" class="table table-striped" width="100%">
             <thead>
             <tr>
                 <td>No</td>
@@ -63,6 +70,10 @@
 <script>
     $(document).ready(function () {
 
+        var tpl = $("#tpl").html();
+        //预编译模板
+        var template = Handlebars.compile(tpl);
+
         var table = $("#main").dataTable({    // 和<table>的id对应，指定初始化datatables。
             "pagingType": "full_numbers",
             language: {
@@ -89,9 +100,22 @@
                     // return后边是我们希望在指定列填入的按钮代码
                     "targets": -1,
                     "render": function (data, type, row, meta) {
-                        return "<input type = 'button' id = 'editBtn' value = '编辑'>" +
-                                "<input type = 'button' id = 'delBtn' value = '删除'>" +
-                                "<input type = 'button' id = 'sendBtn' value = '发送'  data-toggle='modal' data-target='#myModal'>"// onclick=popSendWindow("+row.id+")> "
+                        var context =
+                                {
+                                    buttons: [
+                                        {"name": "编辑", "id": "editBtn", "fn": "edit()", "type": "primary"},
+                                        {"name": "删除", "id": "delBtn", "fn": "del()", "type": "danger"},
+                                        {
+                                            "name": "发送",
+                                            "id": "sendBtn",
+                                            "fn": "del()",
+                                            "type": "default",
+                                            "target": "#myModal"
+                                        }
+                                    ]
+                                };
+                        var html = template(context);
+                        return html;
                     }
                 }
             ],
@@ -126,7 +150,7 @@
                 $.post("/http/del/" + id,
                         function (data, status) {
                             if (status == 'success') {
-                                table.find("tr").eq(row).remove().draw();
+                                table.find("tr").eq(row).remove().draw(false);
                             }
                             alert(data);
                         }, 'text');

@@ -34,6 +34,9 @@ public class HttpService {
     private HttpRepository repository;
 
     public void save(HttpRequestInfo info) {
+        if(info.getId()==null){
+            info.setCreateTime(new Date());
+        }
         repository.saveAndFlush(info);
     }
 

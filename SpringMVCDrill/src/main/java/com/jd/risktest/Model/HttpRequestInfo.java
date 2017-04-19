@@ -9,7 +9,6 @@ import java.util.Date;
 @Entity
 public class HttpRequestInfo {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +18,7 @@ public class HttpRequestInfo {
     private String name;
 
     private String url;
-    @Column(length=10)
+    @Column(length = 10)
     private String method;//get post
 
     private String parameter;
@@ -45,7 +44,7 @@ public class HttpRequestInfo {
     }
 
     public void setId(Long id) {
-        id = id;
+        this.id = id;
     }
 
     public String getCategory() {

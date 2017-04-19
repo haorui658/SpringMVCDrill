@@ -48,7 +48,7 @@ public class HttpCotroller {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(HttpRequestInfo info) {
         System.out.println(JSON.toJSON(info));
-        info.setCreateTime(new Date());
+
         try {
             service.save(info);
         } catch (Exception e) {
