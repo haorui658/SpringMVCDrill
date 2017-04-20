@@ -3,9 +3,9 @@ package com.jd.risktest.Service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.jd.risktest.Model.HttpRequestInfo;
-import com.jd.risktest.Repository.HttpRepository;
+import com.jd.risktest.Model.UserCase;
+import com.jd.risktest.Repository.UserCaseRepository;
 import org.apache.http.NameValuePair;
-import org.apache.http.ParseException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -20,20 +20,19 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
  * Created by cdhaorui on 2017/4/6.
  */
 @Service
-public class HttpService {
+public class UserCaseService {
 
 
     @Autowired
-    private HttpRepository repository;
+    private UserCaseRepository repository;
 
-    public void save(HttpRequestInfo info) {
+    public void save(UserCase info) {
         if(info.getId()==null){
             info.setCreateTime(new Date());
         }
@@ -44,18 +43,18 @@ public class HttpService {
         repository.delete(id);
     }
 
-    public Iterable<HttpRequestInfo> findAll() {
+    public Iterable<UserCase> findAll() {
         return repository.findAll();
     }
 
-    public HttpRequestInfo findById(Long id) {
+    public UserCase findById(Long id) {
         return repository.findOne(id);
     }
 
     public String sendRequestById(Long id) {
-        HttpRequestInfo requestInfo = findById(id);
+        UserCase requestInfo = findById(id);
         String reponse = "";
-        Map<String, String> paramMap = JSON.parseObject(requestInfo.getParameter(), new TypeReference<Map<String, String>>() {
+        Map<String, String> paramMap = JSON.parseObject(requestInfo.getRequestParameter(), new TypeReference<Map<String, String>>() {
         });
 //        if (requestInfo.getMethod() == "POST") {
 //            requestInfo.setLatestResult(sendPost(requestInfo.getUrl(), paramMap));

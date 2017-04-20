@@ -22,12 +22,13 @@
 
 <div class="container" style="padding: 15px">
     <div class="row">
+        <h1>$id</h1>
         <div class="col-md-4 input-group">
             <span class="input-group-addon" id="basic-addon1">ERP</span>
             <input type="text" name="pin" id="pin" class="form-control" placeholder="Erp"
                    aria-describedby="basic-addon1">
         </div>
-        <a href="/http/add">
+        <a href="/http/userCase/add">
             <button id="query" class="col-md-2 btn btn-primary">新增</button>
         </a>
     </div>
@@ -36,11 +37,13 @@
             <thead>
             <tr>
                 <td>No</td>
-                <td>类别</td>
                 <td>名称</td>
-                <td>URL</td>
                 <td>创建人</td>
                 <td>创建时间</td>
+                <td>入参</td>
+                <td>期望</td>
+                <td>最新返回</td>
+                <td>最新结果</td>
                 <td>操作</td>
             </tr>
             </thead>
@@ -113,7 +116,6 @@
                                     buttons: [
                                         {"name": "编辑", "id": "editBtn", "fn": "edit()", "type": "primary"},
                                         {"name": "删除", "id": "delBtn", "fn": "del()", "type": "danger"},
-                                        {"name": "用例", "id": "caseBtn", "fn": "del()", "type": "danger"},
                                         {
                                             "name": "发送",
                                             "id": "sendBtn",
@@ -132,24 +134,21 @@
             //注意这里第六列数据指定为null，用来存放我们加入的按钮
             "columns": [
                 {"data": "id"},
-                {"data": "category"},
                 {"data": "name"},
-                {"data": "url"},
                 {"data": "creater"},
                 {"data": "createTime"},
+                {"data": "requestParameter"},
+                {"data": "latestResponse"},
+                {"data": "latestResponse"},
                 {"data": null}
             ],
             "ajax": {
-                "url": '/http/query',
+                "url": '/http/userCase/query',
                 "type": "POST",
                 "dataSrc": ''
             }
         });
-        $("#main tbody").on("click", "#caseBtn", function () {
-            var row = $("table#main tr").index($(this).closest("tr"));
-            var id = $("table#main").find("tr").eq(row).find("td").eq(0).text();
-            window.location.href = "/http/userCase/" + id;
-        });
+
 
         //为我们生成的按钮绑定方法，这里是弹出姓名和职业的对话框
         $("#main tbody").on("click", "#delBtn", function () {
@@ -177,10 +176,6 @@
             window.location.href = "/http/edit/" + id;
         });
     });
-
-    function popSendWindow(id) {
-        alert(id);
-    }
 
 </script>
 </body>

@@ -14,7 +14,7 @@ public class HttpRequestInfo {
     private Long id;
 
     private String category;
-
+    @Column(length = 50)
     private String name;
 
     private String url;
@@ -31,13 +31,6 @@ public class HttpRequestInfo {
     private Date createTime;
 
     private String remark;
-
-    private String latestResult;
-
-    private String latestResponse;
-
-    private String expectResponse;
-
 
     public Long getId() {
         return id;
@@ -119,27 +112,4 @@ public class HttpRequestInfo {
         this.remark = remark;
     }
 
-    public String getExpectResponse() {
-        return expectResponse;
-    }
-
-    public void setExpectResponse(String expectResponse) {
-        this.expectResponse = expectResponse;
-    }
-
-    public String getLatestResult() {
-        return latestResult;
-    }
-
-    public void setLatestResult(String latestResult) {
-        this.latestResult = latestResult;
-    }
-
-    public String getLatestResponse() {
-        return latestResponse;
-    }
-
-    public void setLatestResponse(String latestResponse) {
-        this.latestResponse = latestResponse;
-    }
 }
