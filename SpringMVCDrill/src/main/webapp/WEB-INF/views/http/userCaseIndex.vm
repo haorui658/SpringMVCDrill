@@ -147,7 +147,7 @@
             var id = $("table#main").find("tr").eq(row).find("td").eq(0).text();
 
             if (confirm("您确定要删除该条记录吗?")) {
-                $.post("/http/del/" + id,
+                $.post("/http/userCase/del/" + id,
                         function (data, status) {
                             if (status == 'success') {
                                 table.find("tr").eq(row).remove().draw(false);
@@ -162,7 +162,7 @@
             //获取行
             var row = $("table#main tr").index($(this).closest("tr"));
             var id = $("table#main").find("tr").eq(row).find("td").eq(0).text();
-            window.location.href = "/http/edit/" + id;
+            window.location.href = "/http/userCase/edit/" + id;
         });
     });
 

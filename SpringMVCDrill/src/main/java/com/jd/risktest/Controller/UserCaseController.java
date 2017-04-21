@@ -66,4 +66,16 @@ public class UserCaseController {
         return "http/addCase";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    public String delete(@PathVariable("id") Long id) {
+        try {
+            service.delete(id);
+            return "删除成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
 }
