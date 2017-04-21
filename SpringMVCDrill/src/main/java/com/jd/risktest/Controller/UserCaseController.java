@@ -30,18 +30,23 @@ public class UserCaseController {
         return "http/userCaseIndex";
     }
 
-    @RequestMapping("/add")
-    public String add() {
+    @RequestMapping("/add/{id}")
+    public String add(@PathVariable("id") Long id, Map<String, Object> map) {
+        map.put("httpId", id);
+        UserCase uc=new UserCase();
+        uc.setInfoId(id);
+        map.put("editInfo", uc);
         return "http/addCase";
     }
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(UserCase info) {
+    public String save(UserCase info, Map<String, Object> map) {
         System.out.println(JSON.toJSON(info));
 
         try {
             service.save(info);
+            map.put("id", info.getInfoId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,10 +54,10 @@ public class UserCaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/query", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    public String queryMq() {
+    @RequestMapping(value = "/query/{id}", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    public String queryMq(@PathVariable("id") Long id) {
 
-        return JSON.toJSONString(service.findAll(), SerializerFeature.WriteNullStringAsEmpty);
+        return JSON.toJSONString(service.findByInfoId(id), SerializerFeature.WriteNullStringAsEmpty);
     }
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable("id") Long id, Map<String, Object> map) {

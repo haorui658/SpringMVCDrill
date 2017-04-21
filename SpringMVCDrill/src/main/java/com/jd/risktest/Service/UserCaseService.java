@@ -33,7 +33,7 @@ public class UserCaseService {
     private UserCaseRepository repository;
 
     public void save(UserCase info) {
-        if(info.getId()==null){
+        if (info.getId() == null) {
             info.setCreateTime(new Date());
         }
         repository.saveAndFlush(info);
@@ -49,6 +49,10 @@ public class UserCaseService {
 
     public UserCase findById(Long id) {
         return repository.findOne(id);
+    }
+
+    public List<UserCase> findByInfoId(Long id) {
+        return repository.findByInfoId(id);
     }
 
     public String sendRequestById(Long id) {

@@ -28,8 +28,11 @@
             <input type="text" name="pin" id="pin" class="form-control" placeholder="Erp"
                    aria-describedby="basic-addon1">
         </div>
-        <a href="/http/userCase/add">
+        <a href="/http/userCase/add/$id">
             <button id="query" class="col-md-2 btn btn-primary">新增</button>
+        </a>
+        <a href="/http/index">
+            <button id="query" class="col-md-2 btn btn-primary">返回</button>
         </a>
     </div>
     <div class="row table-responsive" style="padding: 15px">
@@ -54,22 +57,7 @@
 </div>
 
 
-<!-- 发送模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">发送MQ</h4>
-            </div>
-            <div class="modal-body">在这里添加一些文本</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">提交更改</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
+
 <script>
     $(document).ready(function () {
 
@@ -101,7 +89,7 @@
                 {
                     // targets用于指定操作的列，从第0列开始，-1为最后一列，这里第六列
                     // return后边是我们希望在指定列填入的按钮代码
-                    "targets": -2,
+                    "targets": 3,
                     "render": function (data, type, row, meta) {
                         return getFormatDate(row.createTime);
                     }
@@ -138,12 +126,13 @@
                 {"data": "creater"},
                 {"data": "createTime"},
                 {"data": "requestParameter"},
+                {"data": "expectResponse"},
                 {"data": "latestResponse"},
-                {"data": "latestResponse"},
+                {"data": "latestResult"},
                 {"data": null}
             ],
             "ajax": {
-                "url": '/http/userCase/query',
+                "url": '/http/userCase/query/$id',
                 "type": "POST",
                 "dataSrc": ''
             }

@@ -15,22 +15,23 @@
     <div class="row" style="padding: 15px">
         <form action="/http/userCase/save" method="post">
             <div class="form-group">
-                #if($editInfo)  <label for="Id">ID</label>
-                    <input class="form-control" type="text" name="Id" id="Id" readonly="readonly"
-                           value="${editInfo.id}">#end
+                #if($editInfo&&$editInfo.id)  <label for="Id">ID</label>
+                    <input class="form-control" type="text" name="id" id="Id" readonly="readonly"
+                           value="$!{editInfo.id}">#end
                 <label for="nameId">名称</label>
                 <input class="form-control" type="text" name="name" id="nameId"#if($editInfo)
-                       value="${editInfo.name}"#end>
-
-                <label for="parameterId">输入参数</label>
+                       value="$!{editInfo.name}"#end>
+                <label for="parameterId">入参</label>
                 <input class="form-control" type="text" name="parameter" id="parameterId"#if($editInfo)
-                       value="${editInfo.parameter}"#end>
+                       value="$!{editInfo.parameter}"#end>
+                <label for="expectResponseId">期望结果</label>
+                <input class="form-control" type="text" name="expectResponse" id="expectResponseId"#if($editInfo)
+                       value="$!{editInfo.expectResponse}"#end>
                 <label for="createrId">创建人</label>
                 <input class="form-control" type="text" name="creater" id="createrId"#if($editInfo)
-                       value="${editInfo.creater}"#end>
-                <label for="expectResponseId">期望返回</label>
-                <input class="form-control" type="text" name="expectResponse" id="expectResponseId"#if($editInfo)
-                       value="${editInfo.expectResponse}"#end>
+                       value="$!{editInfo.creater}"#end>
+                <input class="form-control" type="text" name="infoId" id="expectResponseId"#if($editInfo)
+                       value="$!{editInfo.infoId}"#end>
             </div>
 
             <button type="submit" class="btn btn-default">保存</button>
