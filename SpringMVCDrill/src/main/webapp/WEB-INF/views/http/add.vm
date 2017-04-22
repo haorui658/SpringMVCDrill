@@ -44,9 +44,6 @@
                 <label for="remarkId">备注</label>
                 <input class="form-control" type="text" name="remark" id="remarkId"#if($editInfo)
                        value="${editInfo.remark}"#end>
-                <label for="expectResponseId">期望返回</label>
-                <input class="form-control" type="text" name="expectResponse" id="expectResponseId"#if($editInfo)
-                       value="${editInfo.expectResponse}"#end>
 
                 <p class="help-block">Example block-level help text here.</p>
             </div>

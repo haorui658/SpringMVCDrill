@@ -10,32 +10,47 @@
 
 </head>
 <body>
-
-<div class="container" style="padding: 15px">
-    <div class="row" style="padding: 15px">
-        <form action="/http/userCase/save" method="post">
-            <div class="form-group">
-                #if($editInfo&&$editInfo.id)  <label for="Id">ID</label>
-                    <input class="form-control" type="text" name="id" id="Id" readonly="readonly"
-                           value="$!{editInfo.id}">#end
+<form action="/http/userCase/save" method="post">
+    <div class="form-group container" style="padding: 15px">
+        #if($editInfo&&$editInfo.id)  <label for="Id">ID</label>
+            <input class="form-control" type="text" name="id" id="Id" readonly="readonly"
+                   value="$!{editInfo.id}">#end
+        <div class="row">
+            <div class="col-md-6 input-group">
                 <label for="nameId">名称</label>
                 <input class="form-control" type="text" name="name" id="nameId"#if($editInfo)
                        value="$!{editInfo.name}"#end>
-                <label for="parameterId">入参</label>
-                <input class="form-control" type="text" name="parameter" id="parameterId"#if($editInfo)
-                       value="$!{editInfo.parameter}"#end>
-                <label for="expectResponseId">期望结果</label>
-                <input class="form-control" type="text" name="expectResponse" id="expectResponseId"#if($editInfo)
-                       value="$!{editInfo.expectResponse}"#end>
+            </div>
+            <div class="col-md-4 input-group">
                 <label for="createrId">创建人</label>
                 <input class="form-control" type="text" name="creater" id="createrId"#if($editInfo)
                        value="$!{editInfo.creater}"#end>
-                <input class="form-control" type="text" name="infoId" id="expectResponseId"#if($editInfo)
-                       value="$!{editInfo.infoId}"#end>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 input-group">
+                <label for="parameterId">入参</label>
+                <textarea class="form-control" rows="8" name="parameter" id="parameterId"#if($editInfo)
+                          value="$!{editInfo.parameter}"#end></textarea>
+            </div>
+            <div class="col-md-6 input-group">
 
-            <button type="submit" class="btn btn-default">保存</button>
-        </form>
+                <label for="expectResponseId">期望结果</label>
+                <textarea class="form-control" rows="8" name="expectResponse"
+                          id="expectResponseId"#if($editInfo)
+                          value="$!{editInfo.expectResponse}"#end></textarea>
+            </div>
+        </div>
+
+        <input class="form-control" type="hidden" name="infoId" id="expectResponseId"#if($editInfo)
+               value="$!{editInfo.infoId}"#end>
+        <div class="row">
+            <div class="col-md-2 button-bar col-md-offset-10">
+                <button type="button" class="btn btn-default" onclick="window.location='/http/userCase/$!{editInfo.infoId}'">取消</button>
+                <button type="submit" class="btn btn-default">保存</button>
+            </div>
+        </div>
     </div>
-</div>
+
+</form>
 </body>
