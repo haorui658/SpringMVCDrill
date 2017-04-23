@@ -45,8 +45,6 @@
                 <td>创建时间</td>
                 <td>入参</td>
                 <td>期望</td>
-                <td>最新返回</td>
-                <td>最新结果</td>
                 <td>操作</td>
             </tr>
             </thead>
@@ -126,8 +124,6 @@
                 {"data": "creater"},
                 {"data": "createTime"},
                 {"data": "requestParameter"},
-                {"data": "expectResponse"},
-                {"data": "latestResponse"},
                 {"data": "latestResult"},
                 {"data": null}
             ],

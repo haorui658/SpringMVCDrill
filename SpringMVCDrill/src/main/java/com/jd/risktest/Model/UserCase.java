@@ -21,6 +21,7 @@ public class UserCase {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     private String latestResult;
+    @Column(length = 20410)
     private String latestResponse;
 
     public Long getId() {

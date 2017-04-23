@@ -50,17 +50,18 @@ public class UserCaseService {
     public String sendRequestByCaseId(Long id) {
         UserCase requestInfo = findById(id);
         HttpRequestInfo info = httpService.findById(requestInfo.getInfoId());
-        String response = "";
+        String latestResponse = "";
         Map<String, String> paramMap = JSON.parseObject(requestInfo.getRequestParameter(), new TypeReference<Map<String, String>>() {
         });
         if (info.getMethod().equals("POST")) {
-            requestInfo.setLatestResponse(HttpRequestUtils.sendPost(info.getUrl(), paramMap));
+            latestResponse = HttpRequestUtils.sendPost(info.getUrl(), paramMap).substring(0, 20410);
         }
         if (info.getMethod().equals("GET")) {
-            requestInfo.setLatestResponse(HttpRequestUtils.sendGet(info.getUrl(), paramMap));
+            latestResponse = HttpRequestUtils.sendGet(info.getUrl(), paramMap).substring(0, 20410);
         }
+        requestInfo.setLatestResponse(latestResponse);
         //设置结果
-        if (response == requestInfo.getExpectResponse()) {
+        if (latestResponse == requestInfo.getExpectResponse()) {
             requestInfo.setLatestResult("PASS");
         } else {
             requestInfo.setLatestResult("Fail");
