@@ -42,15 +42,41 @@
             </div>
         </div>
 
-        <input class="form-control" type="hidden" name="infoId" id="expectResponseId"#if($editInfo)
+        <input class="form-control" type="hidden" name="infoId" #if($editInfo)
                value="$!{editInfo.infoId}"#end>
         <div class="row">
             <div class="col-md-2 button-bar col-md-offset-10">
-                <button type="button" class="btn btn-default" onclick="window.location='/http/userCase/$!{editInfo.infoId}'">取消</button>
+                <button type="button" class="btn btn-default"
+                        onclick="window.location='/http/userCase/$!{editInfo.infoId}'">取消
+                </button>
+                <button id="invoke" type="button" class="btn btn-default">调用</button>
                 <button type="submit" class="btn btn-default">保存</button>
             </div>
         </div>
     </div>
-
 </form>
+<script>
+    $(document).ready(function () {
+
+        $("#invoke").click(function () {
+            $("#expectResponseId").val("");
+            var parameter = $("#parameterId").val();
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "text",
+                url: "/http/userCase/request/$!{editInfo.id}",
+                data: null,
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (data) {
+                    $("#expectResponseId").val(data);
+                    return false;
+                },
+                error: function (data, status, e) {
+                    alert(e.message);
+                }
+            });
+        });
+    });
+</script>
 </body>

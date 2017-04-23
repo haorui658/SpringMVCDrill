@@ -77,5 +77,14 @@ public class UserCaseController {
             return e.getMessage();
         }
     }
-
+    @ResponseBody
+    @RequestMapping(value = "/request/{id}", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    public String SendRequest(@PathVariable("id") Long id) {
+        try {
+            return  service.sendRequestByCaseId(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
 }

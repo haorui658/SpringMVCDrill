@@ -21,8 +21,6 @@ public class HttpRequestInfo {
     @Column(length = 10)
     private String method;//get post
 
-    private String parameter;
-
     private Integer cookieType;
 
     private String creater;
@@ -70,14 +68,6 @@ public class HttpRequestInfo {
 
     public void setMethod(String method) {
         this.method = method;
-    }
-
-    public String getParameter() {
-        return parameter;
-    }
-
-    public void setParameter(String parameter) {
-        this.parameter = parameter;
     }
 
     public Integer getCookieType() {

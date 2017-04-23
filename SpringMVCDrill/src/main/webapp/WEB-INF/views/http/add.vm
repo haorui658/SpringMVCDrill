@@ -27,14 +27,10 @@
                 <label for="urlId">URL</label>
                 <input class="form-control" type="text" name="url" id="urlId"#if($editInfo) value="${editInfo.url}"#end>
                 <label for="methodId">Method</label>
-                <select name="method" id="methodId" class="form-control" value="#if($editInfo&&${editInfo.method}=="GET")GET #else POST#end">
+                <select name="method" id="methodId" class="form-control">
                     <option value="POST">POST</option>
                     <option value="GET">GET</option>
                 </select>
-
-                <label for="parameterId">参数</label>
-                <input class="form-control" type="text" name="parameter" id="parameterId"#if($editInfo)
-                       value="${editInfo.parameter}"#end>
                 <label for="cookieTypeId">Cookie类型</label>
                 <input class="form-control" type="text" name="cookieType" id="cookieTypeId"#if($editInfo)
                        value="$!{editInfo.cookieType}"#end>
@@ -47,13 +43,14 @@
 
                 <p class="help-block">Example block-level help text here.</p>
             </div>
-        ##            <div class="checkbox">
-        ##                <label>
-        ##                    <input type="checkbox"> Check me out
-        ##                </label>
-        ##            </div>
+            <button type="button" class="btn btn-default" onclick="window.location='/http/index'">返回</button>
             <button type="submit" class="btn btn-default">保存</button>
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#methodId").val("#if(${editInfo.method}=="GET")GET#{else}POST#end");
+    });
+</script>
 </body>
