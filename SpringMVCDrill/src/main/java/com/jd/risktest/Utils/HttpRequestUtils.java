@@ -63,7 +63,7 @@ public class HttpRequestUtils {
         String reponseText = "";
 
         try {
-            CloseableHttpResponse httpResponse = getPostHttpResponse(url, paramMap);
+            CloseableHttpResponse httpResponse = getPostHttpResponse(url, paramMap,true);
             BufferedReader in = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "UTF-8"));// 把字节流包装成字符
             String line = null;
 
@@ -77,7 +77,7 @@ public class HttpRequestUtils {
         return reponseText;
     }
 
-    private static CloseableHttpResponse getPostHttpResponse(String url, Map<String, String> paramMap) throws IOException {
+    private static CloseableHttpResponse getPostHttpResponse(String url, Map<String, String> paramMap,boolean isSetCookie) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(url);
         if (paramMap != null && paramMap.size() != 0) {
@@ -91,7 +91,9 @@ public class HttpRequestUtils {
         httppost.setHeader("Content-type", "application/x-www-form-urlencoded");
         httppost.setHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
         // 添加cookie到头文件
-        httppost.addHeader("Cookie", getLoginCookie());
+        if(isSetCookie) {
+            httppost.addHeader("Cookie", getLoginCookie());
+        }
         return httpClient.execute(httppost);
     }
 
@@ -100,7 +102,7 @@ public class HttpRequestUtils {
         paramMap.put("password", "xinxibu456");
         paramMap.put("username", "haorui7");
         String url = "http://test.ssa.jd.com/sso/login";
-        CloseableHttpResponse httpResponse = getPostHttpResponse(url, paramMap);
+        CloseableHttpResponse httpResponse = getPostHttpResponse(url, paramMap,false);
         String cookie = httpResponse.getLastHeader("Set-Cookie").getValue();
         System.out.println(cookie);
         return cookie;
