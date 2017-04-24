@@ -99,9 +99,9 @@ public class HttpRequestUtils {
 
     private static String getLoginCookie() throws IOException {
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("password", "xinxibu456");
-        paramMap.put("username", "haorui7");
-        String url = "http://test.ssa.jd.com/sso/login";
+        paramMap.put("password", "XXXXX");
+        paramMap.put("username", "XXXX");
+        String url = "http://XX.XX.XX.com/sso/login";
         CloseableHttpResponse httpResponse = getPostHttpResponse(url, paramMap,false);
         String cookie = httpResponse.getLastHeader("Set-Cookie").getValue();
         System.out.println(cookie);
