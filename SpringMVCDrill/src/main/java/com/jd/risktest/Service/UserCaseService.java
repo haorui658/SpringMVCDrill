@@ -47,11 +47,14 @@ public class UserCaseService {
         return repository.findByInfoId(id);
     }
 
-    public String sendRequestByCaseId(Long id) {
+    public String sendRequestByCaseId(Long id,String param) {
         UserCase requestInfo = findById(id);
         HttpRequestInfo info = httpService.findById(requestInfo.getInfoId());
         String latestResponse = "";
-        Map<String, String> paramMap = JSON.parseObject(requestInfo.getRequestParameter(), new TypeReference<Map<String, String>>() {
+        if(param==null){
+            param = requestInfo.getRequestParameter();
+        }
+        Map<String, String> paramMap = JSON.parseObject(param, new TypeReference<Map<String, String>>() {
         });
         if (info.getMethod().equals("POST")) {
             latestResponse = HttpRequestUtils.sendPost(info.getUrl(), paramMap).substring(0, 20410);
