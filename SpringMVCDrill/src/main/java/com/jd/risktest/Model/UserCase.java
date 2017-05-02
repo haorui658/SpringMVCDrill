@@ -16,12 +16,13 @@ public class UserCase {
     private Long infoId;
     private String name;
     private String requestParameter;
+    @Column(length = 5000)
     private String expectResponse;
     private String creater;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     private String latestResult;
-    @Column(length = 20410)
+    @Column(length = 5000)
     private String latestResponse;
 
     public Long getId() {

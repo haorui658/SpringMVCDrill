@@ -30,8 +30,7 @@
         <div class="row">
             <div class="col-md-6 input-group">
                 <label for="parameterId">入参</label>
-                <textarea class="form-control" rows="8" name="parameter" id="parameterId"#if($editInfo)
-                          value="$!{editInfo.parameter}"#end></textarea>
+                <textarea class="form-control" rows="8" name="requestParameter" id="parameterId"></textarea>
             </div>
             <div class="col-md-6 input-group">
 
@@ -57,7 +56,8 @@
 </form>
 <script>
     $(document).ready(function () {
-
+        //ToDo有问题
+        $('#parameterId').val($esc.html($editInfo.requestParameter));
         $("#invoke").click(function () {
             $("#expectResponseId").val("");
             var parameter = $("#parameterId").val();
@@ -66,7 +66,7 @@
                 type: "POST",
                 dataType: "text",
                 url: "/http/userCase/request/$!{editInfo.id}",
-                data: {param:parameter},
+                data: {param: parameter},
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
                 success: function (data) {
                     $("#expectResponseId").val(data);
