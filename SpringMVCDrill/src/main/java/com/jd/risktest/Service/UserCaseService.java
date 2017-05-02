@@ -54,10 +54,13 @@ public class UserCaseService {
         Map<String, String> paramMap = JSON.parseObject(requestInfo.getRequestParameter(), new TypeReference<Map<String, String>>() {
         });
         if (info.getMethod().equals("POST")) {
-            latestResponse = HttpRequestUtils.sendPost(info.getUrl(), paramMap).substring(0, 20410);
+            latestResponse = HttpRequestUtils.sendPost(info.getUrl(), paramMap);
         }
         if (info.getMethod().equals("GET")) {
-            latestResponse = HttpRequestUtils.sendGet(info.getUrl(), paramMap).substring(0, 20410);
+            latestResponse = HttpRequestUtils.sendGet(info.getUrl(), paramMap);
+        }
+        if (latestResponse.length() > 20410) {
+            latestResponse = latestResponse.substring(0, 20410);
         }
         requestInfo.setLatestResponse(latestResponse);
         //设置结果
