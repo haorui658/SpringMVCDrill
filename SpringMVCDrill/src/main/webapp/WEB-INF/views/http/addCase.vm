@@ -9,6 +9,7 @@
     <script src="/static/assets/js/bootstrap.min.js"></script>
     <script src="/static/assets/js/aceEditor/ace.js"></script>
     <script src="/static/assets/js/aceEditor/mode-json.js"></script>
+    <script src="/static/assets/js/aceEditor/worker-json.js"></script>
 </head>
 <body>
 <form action="/http/userCase/save" method="post">
@@ -31,7 +32,7 @@
         <div class="row">
             <div class="col-md-6 input-group">
                 <label for="parameterId">入参</label>
-                <div id="jsoneditor" style="width:100%;height:200px">test</div>
+                <div id="jsoneditor" style="width:100%;height:200px"></div>
                 <textarea class="form-control" rows="8" style="display:none" name="requestParameter" id="parameterId"></textarea>
             </div>
             <div class="col-md-6 input-group">
@@ -61,9 +62,9 @@
         var editor = ace.edit("jsoneditor");
 //        editor.setTheme("ace/theme/twilight");
         editor.getSession().setMode("ace/mode/json");
-        editor.setValue(JSON.stringify($editInfo.requestParameter));
         var textarea = $('textarea[name="requestParameter"]');
-        textarea.val(editor.getSession().getValue());
+        #if($editInfo&&$editInfo.requestParameter!="")editor.setValue(JSON.stringify($editInfo.requestParameter));
+        textarea.val(editor.getSession().getValue());#end
 
         editor.getSession().on("change", function () {
             textarea.val(editor.getSession().getValue());

@@ -47,11 +47,11 @@ public class UserCaseService {
         return repository.findByInfoId(id);
     }
 
-    public String sendRequestByCaseId(Long id,String param) {
+    public String sendRequestByCaseId(Long id, String param) {
         UserCase requestInfo = findById(id);
         HttpRequestInfo info = httpService.findById(requestInfo.getInfoId());
         String latestResponse = "";
-        if(param==null){
+        if (param == null) {
             param = requestInfo.getRequestParameter();
         }
         Map<String, String> paramMap = JSON.parseObject(param, new TypeReference<Map<String, String>>() {
@@ -67,13 +67,12 @@ public class UserCaseService {
         }
         requestInfo.setLatestResponse(latestResponse);
         //设置结果
-        if (latestResponse == requestInfo.getExpectResponse()) {
-            requestInfo.setLatestResult("PASS");
+        if (latestResponse.equals(requestInfo.getExpectResponse())) {
+            requestInfo.setLatestResult("Pass");
         } else {
             requestInfo.setLatestResult("Fail");
         }
         save(requestInfo);
-
         return requestInfo.getLatestResponse();
     }
 

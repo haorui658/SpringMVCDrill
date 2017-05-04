@@ -153,6 +153,22 @@
             }
 
         });
+        $("#main tbody").on("click", "#sendBtn", function () {
+            //获取行
+            var row = $("table#main tr").index($(this).closest("tr"));
+            //获取某列（从0列开始计数）的值
+            var id = $("table#main").find("tr").eq(row).find("td").eq(0).text();
+
+                $.post("/http/userCase/request/" + id,
+                        function (data, status) {
+                            if (status == 'success') {
+                                alert(data);
+//                                table.find("tr").eq(row).update().draw(false);
+                            }
+                        }, 'text');
+
+
+        });
         //为我们生成的按钮绑定方法，这里是弹出姓名和职业的对话框
         $("#main tbody").on("click", "#editBtn", function () {
             //获取行
