@@ -74,7 +74,7 @@
         //预编译模板
         var template = Handlebars.compile(tpl);
 
-        var table = $("#main").dataTable({    // 和<table>的id对应，指定初始化datatables。
+        var table = $("#main").DataTable({    // 和<table>的id对应，指定初始化datatables。
             "pagingType": "full_numbers",
             language: {
                 lengthMenu: '<select>' + '<option value="1">1</option>' + '<option value="10">10</option>' + '<option value="30">30</option>' + '<option value="50">50</option></select>条',//左上角的分页大小显示。
