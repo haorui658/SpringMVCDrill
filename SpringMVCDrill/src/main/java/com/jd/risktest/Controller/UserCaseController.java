@@ -33,24 +33,24 @@ public class UserCaseController {
     @RequestMapping("/add/{id}")
     public String add(@PathVariable("id") Long id, Map<String, Object> map) {
         map.put("httpId", id);
-        UserCase uc=new UserCase();
+        UserCase uc = new UserCase();
         uc.setInfoId(id);
         map.put("editInfo", uc);
         return "http/addCase";
     }
 
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseBody
+    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public String save(UserCase info, Map<String, Object> map) {
-        System.out.println(JSON.toJSON(info));
+//        System.out.println(JSON.toJSON(info));
 
         try {
             service.save(info);
             map.put("id", info.getInfoId());
         } catch (Exception e) {
-            e.printStackTrace();
+            return e.getMessage();
         }
-        return "http/userCaseIndex";
+        return "success";
     }
 
     @ResponseBody
@@ -59,6 +59,7 @@ public class UserCaseController {
 
         return JSON.toJSONString(service.findByInfoId(id), SerializerFeature.WriteNullStringAsEmpty);
     }
+
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable("id") Long id, Map<String, Object> map) {
         UserCase info = service.findById(id);
@@ -77,11 +78,12 @@ public class UserCaseController {
             return e.getMessage();
         }
     }
+
     @ResponseBody
     @RequestMapping(value = "/request/{id}", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    public String SendRequest(@PathVariable("id") Long id,String param) {
+    public String SendRequest(@PathVariable("id") Long id, String param) {
         try {
-            return  service.sendRequestByCaseId(id,param);
+            return service.sendRequestByCaseId(id, param);
         } catch (Exception e) {
             e.printStackTrace();
             return e.getMessage();
