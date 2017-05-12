@@ -51,6 +51,7 @@
     </div>
 </div>
 <script>
+    configure("esc",new EscapeTool());
     $(document).ready(function () {
         var editor = ace.edit("jsoneditor");
 //        editor.setTheme("ace/theme/twilight");
@@ -59,7 +60,8 @@
             editor.setValue(JSON.stringify($!{editInfo.requestParameter}));#end
         #if(${editInfo.expectResponse}!="")
             var textarea = $('#expectResponseId');
-            textarea.val('$!{editInfo.expectResponse}');#end
+            var htmlstr=$esc.html($editInfo.expectResponse);
+           textarea.val(htmlstr);#end
 
         $("#invoke").click(function () {
             $("#expectResponseId").val("");
@@ -96,7 +98,7 @@
 //                console.log(result)
             });
         });
-
     });
+
 </script>
 </body>

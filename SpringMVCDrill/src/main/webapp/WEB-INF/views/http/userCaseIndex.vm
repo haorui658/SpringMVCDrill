@@ -13,7 +13,7 @@
     <!--定义操作列按钮模板-->
     <script id="tpl" type="text/x-handlebars-template">
         {{#each buttons}}
-        <button type="button" class="btn btn-{{this.type}} btn-sm" id="{{this.id}}" {{\#if this.target}}
+        <button type="button" class="btn btn-{{this.type}} btn-sm" id="{{this.id}}" {{#if this.target}}
                 data-toggle="modal" data-target="{{this.target}}" {{/if}}>{{this.name}}</button>
         {{/each}}
     </script>
@@ -22,13 +22,13 @@
 
 <div class="container" style="padding: 15px">
     <div class="row">
-        <h1>$id</h1>
+        <h1>${id}</h1>
         <div class="col-md-4 input-group">
             <span class="input-group-addon" id="basic-addon1">ERP</span>
             <input type="text" name="pin" id="pin" class="form-control" placeholder="Erp"
                    aria-describedby="basic-addon1">
         </div>
-        <a href="/http/userCase/add/$id">
+        <a href="/http/userCase/add/${id}">
             <button id="query" class="col-md-2 btn btn-primary">新增</button>
         </a>
         <a href="/http/index">
@@ -128,7 +128,7 @@
                 {"data": null}
             ],
             "ajax": {
-                "url": '/http/userCase/query/$id',
+                "url": '/http/userCase/query/${id}',
                 "type": "POST",
                 "dataSrc": ''
             }

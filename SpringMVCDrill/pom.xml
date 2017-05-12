@@ -67,14 +67,14 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!--http://mvnrepository.com/artifact/org.apache.velocity/velocity -->
+     <!--   &lt;!&ndash;http://mvnrepository.com/artifact/org.apache.velocity/velocity &ndash;&gt;
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>1.7</version>
         </dependency>
 
-        <!--http://mvnrepository.com/artifact/org.apache.velocity/velocity-tools -->
+        &lt;!&ndash;http://mvnrepository.com/artifact/org.apache.velocity/velocity-tools &ndash;&gt;
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-tools</artifactId>
@@ -85,7 +85,7 @@
                     <groupId>antlr</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -110,6 +110,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.11.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
         </dependency>
     </dependencies>
     <build>
