@@ -13,55 +13,67 @@
 </head>
 <body>
 <div class="container" style="padding: 15px">
-    #if($editInfo&&$editInfo.id)  <label for="Id">ID</label>
+<#if (editInfo.id)??>
+    <div class="row">
+        <label for="Id">ID</label>
         <input class="form-control" type="text" name="id" id="Id" readonly="readonly"
-               value="$!{editInfo.id}">#end
+               value="${editInfo.id}">
+    </div>
+</#if>
     <div class="row">
         <div class="col-md-6 input-group">
             <label for="nameId">名称</label>
-            <input class="form-control" type="text" name="name" id="nameId"#if($editInfo)
-                   value="$!{editInfo.name}"#end>
+            <input class="form-control" type="text" name="name" id="nameId"
+            <#if (editInfo.name)??>
+                   value="${editInfo.name}"
+            </#if>
+            >
         </div>
-        <div class="col-md-4 input-group">
+        <div class="col-md-6 input-group">
             <label for="createrId">创建人</label>
-            <input class="form-control" type="text" name="creater" id="createrId"#if($editInfo)
-                   value="$!{editInfo.creater}"#end>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 input-group">
-            <label for="parameterId">入参</label>
-            <div id="jsoneditor" style="width:100%;height:200px"></div>
-        </div>
-        <div class="col-md-6 input-group">
-
-            <label for="expectResponseId">期望结果</label>
-            <textarea class="form-control" rows="8" name="expectResponse"
-                      id="expectResponseId"></textarea>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 button-bar col-md-offset-10">
-            <button type="button" class="btn btn-default"
-                    onclick="window.location='/http/userCase/$!{editInfo.infoId}'">返回
-            </button>
-            <button id="invoke" type="button" class="btn btn-default">调用</button>
-            <button id="save" type="button" class="btn btn-default">保存</button>
+            <input class="form-control" type="text" name="creater" id="createrId"
+            <#if (editInfo)??>
+                   value="${editInfo.creater}"
+            </#if>
+            >
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6 input-group">
+        <label for="parameterId">入参</label>
+        <div id="jsoneditor" style="width:100%;height:200px"></div>
+    </div>
+    <div class="col-md-6 input-group">
+
+        <label for="expectResponseId">期望结果</label>
+        <textarea class="form-control" rows="8" name="expectResponse"
+                  id="expectResponseId"></textarea>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 button-bar col-md-offset-10">
+        <button type="button" class="btn btn-default"
+                onclick="window.location='/http/userCase/${editInfo.infoId}'">返回
+        </button>
+        <button id="invoke" type="button" class="btn btn-default">调用</button>
+        <button id="save" type="button" class="btn btn-default">保存</button>
+    </div>
+</div>
+</div>
 <script>
-    configure("esc",new EscapeTool());
     $(document).ready(function () {
         var editor = ace.edit("jsoneditor");
 //        editor.setTheme("ace/theme/twilight");
         editor.getSession().setMode("ace/mode/json");
-        #if($editInfo.requestParameter)
-            editor.setValue(JSON.stringify($!{editInfo.requestParameter}));#end
-        #if(${editInfo.expectResponse}!="")
-            var textarea = $('#expectResponseId');
-            var htmlstr=$esc.html($editInfo.expectResponse);
-           textarea.val(htmlstr);#end
+    <#if (editInfo.requestParameter)??>
+        editor.setValue(JSON.stringify(${editInfo.requestParameter}));
+    </#if>
+    <#if editInfo.expectResponse!="">
+        var textarea = $('#expectResponseId');
+        var htmlstr = '${editInfo.expectResponse?html}';
+        textarea.val(htmlstr);
+    </#if>
 
         $("#invoke").click(function () {
             $("#expectResponseId").val("");
@@ -70,7 +82,7 @@
                 async: true,
                 type: "POST",
                 dataType: "text",
-                url: "/http/userCase/request/$!{editInfo.id}",
+                url: "/http/userCase/request/${editInfo.id}",
                 data: {param: parameter},
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
                 success: function (data) {
@@ -83,20 +95,20 @@
             });
         });
         $("#save").click(function () {
-            var savedata = {
+            var saveData = {
                 id: $("#Id").val(),
                 name: $("#nameId").val(),
                 creater: $("#createrId").val(),
                 requestParameter: editor.getSession().getValue(),
                 expectResponse: $("#expectResponseId").val(),
-                infoId:$!{editInfo.infoId}
+                infoId: ${editInfo.infoId}
             };
-            $.post("/http/userCase/save", savedata, function (data, status) {
-                if (status == 'success' && data == 'success') {
-                    window.location.href = "/http/userCase/" +$!{editInfo.infoId};
+            $.post("/http/userCase/save", saveData, function (data, status) {
+                if (data == 'success') {
+                    window.location.href = "/http/userCase/" + ${editInfo.infoId};
                 }
 //                console.log(result)
-            });
+            }, 'text');
         });
     });
 
