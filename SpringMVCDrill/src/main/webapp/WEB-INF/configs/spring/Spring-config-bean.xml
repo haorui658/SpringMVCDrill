@@ -3,12 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="risk" class="com.jd.risktest.Service.UimService">
+    <bean id="risk" class="com.jd.risktest.Service.UIMService">
         <property name="authAddress" value="${uim.auth.authAddress}"/>
         <property name="appKey" value="${uim.auth.appKey}"/>
         <property name="token" value="${uim.auth.token}"/>
     </bean>
-    <bean id="risk2" class="com.jd.risktest.Service.UimService">
+    <bean id="risk2" class="com.jd.risktest.Service.UIMService">
         <property name="authAddress" value="${uim.auth.authAddress.risk2}"/>
         <property name="appKey" value="${uim.auth.appKey.risk2}"/>
         <property name="token" value="${uim.auth.token.risk2}"/>

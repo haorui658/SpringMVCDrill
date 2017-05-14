@@ -1,150 +1,237 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title></title>
-<!-- basic styles -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title></title>
+    <!-- basic styles -->
 
-<link href="/static/assets/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="/static/assets/css/font-awesome.min.css"/>
-
-
-<!-- page specific plugin styles -->
-
-<link rel="stylesheet" href="/static/assets/css/jquery-ui-1.10.3.full.min.css"/>
-<link rel="stylesheet" href="/static/assets/css/datepicker.css"/>
-<link rel="stylesheet" href="/static/assets/css/ui.jqgrid.css"/>
-
-<!-- ace styles -->
-
-<link rel="stylesheet" href="/static/assets/css/ace.min.css"/>
-<link rel="stylesheet" href="/static/assets/css/ace-rtl.min.css"/>
-<link rel="stylesheet" href="/static/assets/css/ace-skins.min.css"/>
+    <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css"/>
 
 
-<!-- inline styles related to this page -->
-<link rel="stylesheet" href="/static/assets/css/ljhy.css"/>
-<!-- ace settings handler -->
+    <!-- page specific plugin styles -->
+    <!-- fonts -->
 
-<script src="/static/assets/js/ace-extra.min.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"/>
 
+    <!-- ace styles -->
 
-<style>
-    body, html {
-        height: 100%;
-        width: 100%;
-        overflow: hidden
-    }
-</style>
+    <link rel="stylesheet" href="/static/assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="/static/assets/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="/static/assets/css/ace-skins.min.css"/>
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/css/ace-ie.min.css"/>
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="/static/assets/js/ace-extra.min.js"></script>
+
+    <script src="assets/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
+    </script>
 
-<table id="frametable" cellpadding="0" cellspacing="0" width="100%" height="100%">
-    <tr>
-        <td colspan="2" height="45">
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
+                    <i class="icon-leaf"></i>
+                    ACE后台管理系统
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
 
-            <div class="top_header">
-                <div class="navbar navbar-default" id="navbar">
-                    <div class="navbar-container" id="navbar-container">
-                        <div class="navbar-header pull-left">
-                            <a href="#" class="navbar-brand">
-                                <small class="logo_area">
-                                    <i class="logo"></i>
-                                    <span>后台管理系统</span>
-                                </small>
-                            </a><!-- /.brand -->
-                        </div><!-- /.navbar-header -->
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
 
-                        <div class="navbar-header pull-right" role="navigation">
-                            <ul class="nav ace-nav">
-                                <li class="online_doctors">
-                                    <span class=""></span>
-                                </li>
-                                <li class="light-blue">
-                                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                        <img class="nav-user-photo" src="/static/assets/avatars/user.jpg"
-                                             alt="Jason's Photo"/>
-                                        <span class="user-info">
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo"/>
+                        <span class="user-info">
 									<small>欢迎光临,</small>
-                                            $user
+									Jason
 								</span>
 
-                                        <i class="icon-caret-down"></i>
-                                    </a>
+                        <i class="icon-caret-down"></i>
+                    </a>
 
-                                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-user"></i>
-                                                我的账户
-                                            </a>
-                                        </li>
-
-                                        <li class="divider"></li>
-
-                                        <li>
-                                            <a href="/logout">
-                                                <i class="icon-off"></i>
-                                                退出
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul><!-- /.ace-nav -->
-                        </div><!-- /.navbar-header -->
-                    </div><!-- /.container -->
-                </div>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td valign="top" width="191" height="100%">
-            <div class="left">
-                <div class="sidebar" id="sidebar">
-                </div>
-                <script id="_sidebarTpl" type="text/html">
-                    <ul class="nav nav-list">
-                        {{each data as item index}}
-                        <li data-markid="{{item.menuid}}" class="{{item.activeState}} {{item.openState}}">
-                            <a href="javascript:;" class="dropdown-toggle" menuid="{{item.menuid}}"
-                               menuname="{{item.menuname}}" menuurl="{{item.menuurl}}"
-                               tobarString="{{item.tobarString}}">
-                                <i class="{{item.iconName}}"></i>
-                                <span class="menu-text">{{item.menuname}}</span>
-                                {{if item.subData}}
-                                <b class="arrow icon-angle-down"></b>
-                                {{/if}}
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="icon-cog"></i>
+                                设置
                             </a>
-                            {{if item.subData}}
-                            <ul class="submenu">
-                                {{each item.subData as subItem subIndex}}
-                                <li data-markid="{{subItem.menuid}}"
-                                    class="{{subItem.activeState}} {{subItem.openState}}">
-                                    <a href="javascript:;" menuid="{{subItem.menuid}}" menuname="{{subItem.menuname}}"
-                                       menuurl="{{subItem.menuurl}}" tobarString="{{subItem.tobarString}}">
-                                        <i class="icon-double-angle-right"></i>
-                                        {{subItem.menuname}}
-                                    </a>
-                                </li>
-                                {{/each}}
-                            </ul>
-                            {{/if}}
                         </li>
-                        {{/each}}
-                    </ul><!-- /.nav-list -->
-                    <div class="sidebar-collapse" id="sidebar-collapse">
-                        <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
-                           data-icon2="icon-double-angle-right"></i>
-                    </div>
-                </script>
+
+                        <li>
+                            <a href="#">
+                                <i class="icon-user"></i>
+                                个人资料
+                            </a>
+                        </li>
+
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="#">
+                                <i class="icon-off"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <div class="sidebar" id="sidebar">
+
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <button class="btn btn-success">
+                        <i class="icon-signal"></i>
+                    </button>
+
+                    <button class="btn btn-info">
+                        <i class="icon-pencil"></i>
+                    </button>
+
+                    <button class="btn btn-warning">
+                        <i class="icon-group"></i>
+                    </button>
+
+                    <button class="btn btn-danger">
+                        <i class="icon-cogs"></i>
+                    </button>
+                </div>
+
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success"></span>
+
+                    <span class="btn btn-info"></span>
+
+                    <span class="btn btn-warning"></span>
+
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!-- #sidebar-shortcuts -->
+            <div id="sidebarMenu">
+                <ul class="nav nav-list">
+                    <li class="active">
+                        <a href="index.html">
+                            <i class="icon-dashboard"></i>
+                            <span class="menu-text"> 控制台 </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="typography.html">
+                            <i class="icon-text-width"></i>
+                            <span class="menu-text"> 文字排版 </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="icon-desktop"></i>
+                            <span class="menu-text"> UI 组件 </span>
+
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="elements.html">
+                                    <i class="icon-double-angle-right"></i>
+                                    组件
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="dropdown-toggle">
+                                    <i class="icon-double-angle-right"></i>
+                                    三级菜单
+                                    <b class="arrow icon-angle-down"></b>
+                                </a>
+
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-leaf"></i>
+                                            第一级
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" class="dropdown-toggle">
+                                            <i class="icon-pencil"></i>
+
+                                            第四级
+                                            <b class="arrow icon-angle-down"></b>
+                                        </a>
+
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="icon-plus"></i>
+                                                    添加产品
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!-- /.nav-list -->
             </div>
-        </td>
-        <td valign="top" width="100%" height="100%">
-            <iframe id="iframe" name="main" src="/static/right.html" width="100%" allowtransparency="true"
-                    height="100%" frameborder="0" scrolling="no" style="overflow:visible;"></iframe>
-        </td>
-    </tr>
-</table>
+        </div>
+
+        <div class="main-content">
+            <div class="page-content">
+                <iframe id="iframe" name="main" src="/static/right.html" width="100%" allowtransparency="true"
+                        height="100%" frameborder="0" scrolling="no" style="overflow:visible;"></iframe>
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+    </div><!-- /.main-container-inner -->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
 
 
 <script src="/static/assets/js/jquery-1.10.2.min.js"></script>
@@ -169,16 +256,6 @@
 <script src="/static/assets/js/typeahead-bs2.min.js"></script>
 
 
-<!--<script src="/static/assets/plugins/jquery.easyui.min.js"></script>
-<script src="/static/assets/plugins/jquery.tabs.js"></script>-->
-<!-- ace scripts -->
-<script src="/static/assets/plugins/yui/yahoo-dom-event.js"></script>
-<script src="/static/assets/plugins/yui/connection-min.js"></script>
-<script src="/static/assets/plugins/yui/element-beta-min.js"></script>
-<script src="/static/assets/plugins/yui/tabview-min.js"></script>
-<script src="/static/assets/js/underscore-min.js"></script>
-<script src="/static/assets/js/template.js"></script>
-
 <script src="/static/assets/js/ace-elements.min.js"></script>
 <script src="/static/assets/js/ace.min.js"></script>
 
@@ -187,13 +264,6 @@
     //导航
     $(function () {
 
-        //点击节点生成TAB页
-        function setTab(obj) {
-            var url=$(obj).attr('menuurl');
-            if(url=="")return;
-            window.main.addTab($(obj).attr('menuid'), $(obj).attr('menuname'), $(obj).attr('menuurl'));
-            var tobarCurrString = "&nbsp;<a href=" + $(obj).attr('menuurl') + " target=iFrame" + $(obj).attr('menuid') + ">" + $(obj).attr('menuname') + "</a>";
-        }
 
         //数据配置
         var sideBarData = {
@@ -308,7 +378,8 @@
 
         //点击跳转
         $(document).on('click', '.nav-list a', function () {
-            setTab(this);
+            // setTab(this);
+            changeSrc(this);
         });
 
         //点击折叠
@@ -322,7 +393,47 @@
                 collapseIcon.attr('class', 'icon-double-angle-right');
             }
         });
+
+        function changeSrc(link) {
+            document.getElementById("iframe").src = link;
+        }
     })
+</script>
+
+<script id="_sidebarTpl" type="text/html">
+    <ul class="nav nav-list">
+        {{each data as item index}}
+        <li data-markid="{{item.menuid}}" class="{{item.activeState}} {{item.openState}}">
+            <a href="javascript:;" class="dropdown-toggle" menuid="{{item.menuid}}"
+               menuname="{{item.menuname}}" menuurl="{{item.menuurl}}"
+               tobarString="{{item.tobarString}}">
+                <i class="{{item.iconName}}"></i>
+                <span class="menu-text">{{item.menuname}}</span>
+                {{if item.subData}}
+                <b class="arrow icon-angle-down"></b>
+                {{/if}}
+            </a>
+            {{if item.subData}}
+            <ul class="submenu">
+                {{each item.subData as subItem subIndex}}
+                <li data-markid="{{subItem.menuid}}"
+                    class="{{subItem.activeState}} {{subItem.openState}}">
+                    <a href="javascript:;" menuid="{{subItem.menuid}}" menuname="{{subItem.menuname}}"
+                       menuurl="{{subItem.menuurl}}" tobarString="{{subItem.tobarString}}">
+                        <i class="icon-double-angle-right"></i>
+                        {{subItem.menuname}}
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </li>
+        {{/each}}
+    </ul><!-- /.nav-list -->
+    <div class="sidebar-collapse" id="sidebar-collapse">
+        <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+           data-icon2="icon-double-angle-right"></i>
+    </div>
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/UIM")
 public class UIMController {
     @Autowired
-    Map<String, UimService> uimServiceMap;
+    Map<String, UIMService> uimServiceMap;
 
     @RequestMapping("/Index")
     public String index() {
