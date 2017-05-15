@@ -63,7 +63,7 @@
 
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo"/>
+                        <img class="nav-user-photo" src="static/assets/avatars/avatar.png" alt="Jason's Photo"/>
                         <span class="user-info">
 									<small>欢迎光临,</small>
 									Jason
@@ -118,35 +118,6 @@
 
         <div class="sidebar" id="sidebar">
 
-            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                    <button class="btn btn-success">
-                        <i class="icon-signal"></i>
-                    </button>
-
-                    <button class="btn btn-info">
-                        <i class="icon-pencil"></i>
-                    </button>
-
-                    <button class="btn btn-warning">
-                        <i class="icon-group"></i>
-                    </button>
-
-                    <button class="btn btn-danger">
-                        <i class="icon-cogs"></i>
-                    </button>
-                </div>
-
-                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-                    <span class="btn btn-success"></span>
-
-                    <span class="btn btn-info"></span>
-
-                    <span class="btn btn-warning"></span>
-
-                    <span class="btn btn-danger"></span>
-                </div>
-            </div><!-- #sidebar-shortcuts -->
             <div id="sidebarMenu">
             </div>
         </div>
@@ -252,9 +223,8 @@
             var tpl = $("#_sidebarTpl").html();
             //预编译模板
             var template = Handlebars.compile(tpl);
-            //var sideBarHtml = template("_sidebarTpl", sideBarData);
             var sideBarHtml = template(sideBarData);
-            $("#sidebarMenu").html(sideBarHtml);
+            $("#sidebar").html(sideBarHtml);
         }
 
         //初始化
@@ -311,12 +281,12 @@
 //        });
 
         //点击跳转
-        $(document).on('click', '.nav-list a', function () {
-            // setTab(this);
-            changeSrc(this);
-        });
+//        $(document).on('click', '.nav-list a', function () {
+//            // setTab(this);
+//            changeSrc(this);
+//        });
 
-//        //点击折叠
+        //点击折叠
 //        $(document).on('click', '#sidebar-collapse', function () {
 //            var collapseIcon = $(this).children('i');
 //            if ($("#sidebar").hasClass('menu-min')) {
@@ -335,10 +305,39 @@
 </script>
 
 <script id="_sidebarTpl" type="text/html">
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+            <button class="btn btn-success">
+                <i class="icon-signal"></i>
+            </button>
+
+            <button class="btn btn-info">
+                <i class="icon-pencil"></i>
+            </button>
+
+            <button class="btn btn-warning">
+                <i class="icon-group"></i>
+            </button>
+
+            <button class="btn btn-danger">
+                <i class="icon-cogs"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+            <span class="btn btn-success"></span>
+
+            <span class="btn btn-info"></span>
+
+            <span class="btn btn-warning"></span>
+
+            <span class="btn btn-danger"></span>
+        </div>
+    </div><!-- #sidebar-shortcuts -->
     <ul class="nav nav-list">
         {{#each data}}
         <li data-markid="{{menuid}}" class="{{activeState}} {{openState}}">
-            <a href="javascript:;" class="dropdown-toggle" menuid="{{menuid}}"
+            <a href="#" class="dropdown-toggle" menuid="{{menuid}}"
                menuname="{{menuname}}" menuurl="{{menuurl}}"
                tobarString="{{tobarString}}">
                 <i class="{{iconName}}"></i>
@@ -348,10 +347,9 @@
                 {{/if}}
             </a>
             {{#if subData}}
-            <ul class="submenu">
+            <ul class="submenu" style="display: none;">
                 {{#each subData}}
-                <li data-markid="{{menuid}}"
-                    class="{{activeState}} {{openState}}">
+                <li data-markid="{{menuid}}" class="{{activeState}} {{openState}}">
                     <a href="javascript:;" menuid="{{menuid}}" menuname="{{menuname}}"
                        menuurl="{{menuurl}}" tobarString="{{tobarString}}">
                         <i class="icon-double-angle-right"></i>
