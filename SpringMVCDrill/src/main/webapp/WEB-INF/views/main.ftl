@@ -30,9 +30,8 @@
     <!-- ace settings handler -->
 
     <script src="/static/assets/js/ace-extra.min.js"></script>
-
-    <script src="assets/js/ace-extra.min.js"></script>
-
+    <script src="/static/assets/js/ace-extra.min.js"></script>
+    <script src="/static/assets/js/handlebars.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
     <!--[if lt IE 9]>
@@ -149,80 +148,12 @@
                 </div>
             </div><!-- #sidebar-shortcuts -->
             <div id="sidebarMenu">
-                <ul class="nav nav-list">
-                    <li class="active">
-                        <a href="index.html">
-                            <i class="icon-dashboard"></i>
-                            <span class="menu-text"> 控制台 </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="typography.html">
-                            <i class="icon-text-width"></i>
-                            <span class="menu-text"> 文字排版 </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="icon-desktop"></i>
-                            <span class="menu-text"> UI 组件 </span>
-
-                            <b class="arrow icon-angle-down"></b>
-                        </a>
-
-                        <ul class="submenu">
-                            <li>
-                                <a href="elements.html">
-                                    <i class="icon-double-angle-right"></i>
-                                    组件
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="dropdown-toggle">
-                                    <i class="icon-double-angle-right"></i>
-                                    三级菜单
-                                    <b class="arrow icon-angle-down"></b>
-                                </a>
-
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-leaf"></i>
-                                            第一级
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="icon-pencil"></i>
-
-                                            第四级
-                                            <b class="arrow icon-angle-down"></b>
-                                        </a>
-
-                                        <ul class="submenu">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="icon-plus"></i>
-                                                    添加产品
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul><!-- /.nav-list -->
             </div>
         </div>
 
         <div class="main-content">
             <div class="page-content">
-                <iframe id="iframe" name="main" src="/static/right.html" width="100%" allowtransparency="true"
+                <iframe id="iframe" name="main" src="" width="100%" allowtransparency="true"
                         height="100%" frameborder="0" scrolling="no" style="overflow:visible;"></iframe>
             </div><!-- /.page-content -->
         </div><!-- /.main-content -->
@@ -263,7 +194,6 @@
 <script>
     //导航
     $(function () {
-
 
         //数据配置
         var sideBarData = {
@@ -319,62 +249,66 @@
         };
         //模板渲染
         function sideBarBuild() {
-            var sideBarHtml = template("_sidebarTpl", sideBarData);
-            $("#sidebar").html(sideBarHtml);
+            var tpl = $("#_sidebarTpl").html();
+            //预编译模板
+            var template = Handlebars.compile(tpl);
+            //var sideBarHtml = template("_sidebarTpl", sideBarData);
+            var sideBarHtml = template(sideBarData);
+            $("#sidebarMenu").html(sideBarHtml);
         }
 
         //初始化
         sideBarBuild();
 
-        //点击一级菜单
-        $(document).on('click', '.nav-list>li', function () {
-            var markid = $(this).data('markid');
-            _.each(sideBarData.data, function (sideBarDataItem) {
-                if (sideBarDataItem.menuid == markid) {
-                    if (sideBarDataItem.subData) {
-                        _.each(sideBarDataItem.subData, function (sideBarSubDataItem) {
-                            sideBarSubDataItem.activeState = '';
-                        });
-                        if (sideBarDataItem.openState == 'open') {
-                            sideBarDataItem.openState = '';
-                        } else {
-                            sideBarDataItem.openState = 'open';
-                        }
-                        if (sideBarDataItem.activeState == 'active') {
-                            sideBarDataItem.activeState = '';
-                        } else {
-                            sideBarDataItem.activeState = 'active';
-                        }
-                    } else {
-                        sideBarDataItem.activeState = 'active';
-                    }
-                } else {
-                    sideBarDataItem.openState = '';
-                    sideBarDataItem.activeState = '';
-                }
-                sideBarBuild();
-            })
-        });
-
-        //点击submenu子菜单
-        $(document).on('click', '.nav-list>li .submenu>li', function () {
-            var markid = $(this).data('markid');
-            _.each(sideBarData.data, function (sideBarDataItem) {
-                _.each(sideBarDataItem.subData, function (sideBarSubDataItem) {
-                    if (sideBarSubDataItem.menuid == markid) {
-                        _.each(sideBarData.data, function (sideBarDataItem) {
-                            sideBarDataItem.activeState = '';
-                        });
-                        sideBarDataItem.activeState = 'active';
-                        sideBarSubDataItem.activeState = 'active';
-                    } else {
-                        sideBarSubDataItem.activeState = '';
-                    }
-                });
-            });
-            sideBarBuild();
-            return false;
-        });
+//        //点击一级菜单
+//        $(document).on('click', '.nav-list>li', function () {
+//            var markid = $(this).data('markid');
+//            _.each(sideBarData.data, function (sideBarDataItem) {
+//                if (sideBarDataItem.menuid == markid) {
+//                    if (sideBarDataItem.subData) {
+//                        _.each(sideBarDataItem.subData, function (sideBarSubDataItem) {
+//                            sideBarSubDataItem.activeState = '';
+//                        });
+//                        if (sideBarDataItem.openState == 'open') {
+//                            sideBarDataItem.openState = '';
+//                        } else {
+//                            sideBarDataItem.openState = 'open';
+//                        }
+//                        if (sideBarDataItem.activeState == 'active') {
+//                            sideBarDataItem.activeState = '';
+//                        } else {
+//                            sideBarDataItem.activeState = 'active';
+//                        }
+//                    } else {
+//                        sideBarDataItem.activeState = 'active';
+//                    }
+//                } else {
+//                    sideBarDataItem.openState = '';
+//                    sideBarDataItem.activeState = '';
+//                }
+//                sideBarBuild();
+//            })
+//        });
+//
+//        //点击submenu子菜单
+//        $(document).on('click', '.nav-list>li .submenu>li', function () {
+//            var markid = $(this).data('markid');
+//            _.each(sideBarData.data, function (sideBarDataItem) {
+//                _.each(sideBarDataItem.subData, function (sideBarSubDataItem) {
+//                    if (sideBarSubDataItem.menuid == markid) {
+//                        _.each(sideBarData.data, function (sideBarDataItem) {
+//                            sideBarDataItem.activeState = '';
+//                        });
+//                        sideBarDataItem.activeState = 'active';
+//                        sideBarSubDataItem.activeState = 'active';
+//                    } else {
+//                        sideBarSubDataItem.activeState = '';
+//                    }
+//                });
+//            });
+//            sideBarBuild();
+//            return false;
+//        });
 
         //点击跳转
         $(document).on('click', '.nav-list a', function () {
@@ -382,17 +316,17 @@
             changeSrc(this);
         });
 
-        //点击折叠
-        $(document).on('click', '#sidebar-collapse', function () {
-            var collapseIcon = $(this).children('i');
-            if ($("#sidebar").hasClass('menu-min')) {
-                $("#sidebar").removeClass('menu-min');
-                collapseIcon.attr('class', 'icon-double-angle-left');
-            } else {
-                $("#sidebar").addClass('menu-min');
-                collapseIcon.attr('class', 'icon-double-angle-right');
-            }
-        });
+//        //点击折叠
+//        $(document).on('click', '#sidebar-collapse', function () {
+//            var collapseIcon = $(this).children('i');
+//            if ($("#sidebar").hasClass('menu-min')) {
+//                $("#sidebar").removeClass('menu-min');
+//                collapseIcon.attr('class', 'icon-double-angle-left');
+//            } else {
+//                $("#sidebar").addClass('menu-min');
+//                collapseIcon.attr('class', 'icon-double-angle-right');
+//            }
+//        });
 
         function changeSrc(link) {
             document.getElementById("iframe").src = link;
@@ -402,26 +336,26 @@
 
 <script id="_sidebarTpl" type="text/html">
     <ul class="nav nav-list">
-        {{each data as item index}}
-        <li data-markid="{{item.menuid}}" class="{{item.activeState}} {{item.openState}}">
-            <a href="javascript:;" class="dropdown-toggle" menuid="{{item.menuid}}"
-               menuname="{{item.menuname}}" menuurl="{{item.menuurl}}"
-               tobarString="{{item.tobarString}}">
-                <i class="{{item.iconName}}"></i>
-                <span class="menu-text">{{item.menuname}}</span>
-                {{if item.subData}}
+        {{#each data}}
+        <li data-markid="{{menuid}}" class="{{activeState}} {{openState}}">
+            <a href="javascript:;" class="dropdown-toggle" menuid="{{menuid}}"
+               menuname="{{menuname}}" menuurl="{{menuurl}}"
+               tobarString="{{tobarString}}">
+                <i class="{{iconName}}"></i>
+                <span class="menu-text">{{menuname}}</span>
+                {{#if subData}}
                 <b class="arrow icon-angle-down"></b>
                 {{/if}}
             </a>
-            {{if item.subData}}
+            {{#if subData}}
             <ul class="submenu">
-                {{each item.subData as subItem subIndex}}
-                <li data-markid="{{subItem.menuid}}"
-                    class="{{subItem.activeState}} {{subItem.openState}}">
-                    <a href="javascript:;" menuid="{{subItem.menuid}}" menuname="{{subItem.menuname}}"
-                       menuurl="{{subItem.menuurl}}" tobarString="{{subItem.tobarString}}">
+                {{#each subData}}
+                <li data-markid="{{menuid}}"
+                    class="{{activeState}} {{openState}}">
+                    <a href="javascript:;" menuid="{{menuid}}" menuname="{{menuname}}"
+                       menuurl="{{menuurl}}" tobarString="{{tobarString}}">
                         <i class="icon-double-angle-right"></i>
-                        {{subItem.menuname}}
+                        {{menuname}}
                     </a>
                 </li>
                 {{/each}}
