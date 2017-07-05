@@ -39,7 +39,7 @@
     <script src="assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body >
 <div class="navbar navbar-default" id="navbar">
     <script type="text/javascript">
         try {
@@ -103,7 +103,7 @@
     </div><!-- /.container -->
 </div>
 
-<div class="main-container" id="main-container">
+<div class="main-container" id="main-container" height="100%">
     <script type="text/javascript">
         try {
             ace.settings.check('main-container', 'fixed')
@@ -111,15 +111,12 @@
         }
     </script>
 
-    <div class="main-container-inner">
+    <div class="main-container-inner"  height="100%">
         <a class="menu-toggler" id="menu-toggler" href="#">
             <span class="menu-text"></span>
         </a>
 
         <div class="sidebar" id="sidebar">
-
-            <div id="sidebarMenu">
-            </div>
         </div>
 
         <div class="main-content">
@@ -159,7 +156,7 @@
 
 
 <script src="/static/assets/js/ace-elements.min.js"></script>
-<script src="/static/assets/js/ace.min.js"></script>
+
 
 <!-- inline scripts related to this page -->
 <script>
@@ -281,10 +278,10 @@
 //        });
 
         //点击跳转
-//        $(document).on('click', '.nav-list a', function () {
-//            // setTab(this);
-//            changeSrc(this);
-//        });
+        $(document).on('click', '.nav-list a', function () {
+            // setTab(this);
+            changeSrc($(this).attr("menuurl"));
+        });
 
         //点击折叠
 //        $(document).on('click', '#sidebar-collapse', function () {
@@ -337,7 +334,7 @@
     <ul class="nav nav-list">
         {{#each data}}
         <li data-markid="{{menuid}}" class="{{activeState}} {{openState}}">
-            <a href="#" class="dropdown-toggle" menuid="{{menuid}}"
+            <a href="javascript:void(0);" class="dropdown-toggle" menuid="{{menuid}}"
                menuname="{{menuname}}" menuurl="{{menuurl}}"
                tobarString="{{tobarString}}">
                 <i class="{{iconName}}"></i>
@@ -350,7 +347,7 @@
             <ul class="submenu" style="display: none;">
                 {{#each subData}}
                 <li data-markid="{{menuid}}" class="{{activeState}} {{openState}}">
-                    <a href="javascript:;" menuid="{{menuid}}" menuname="{{menuname}}"
+                    <a href="javascript:void(0);" menuid="{{menuid}}" menuname="{{menuname}}"
                        menuurl="{{menuurl}}" tobarString="{{tobarString}}">
                         <i class="icon-double-angle-right"></i>
                         {{menuname}}
@@ -367,5 +364,8 @@
            data-icon2="icon-double-angle-right"></i>
     </div>
 </script>
+<#--需要放在最后面-->
+<script src="/static/assets/js/ace.min.js"></script>
+
 </body>
 </html>
