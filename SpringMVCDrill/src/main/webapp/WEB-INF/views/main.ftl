@@ -39,9 +39,16 @@
     <script src="assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body >
+<body>
 <div class="navbar navbar-default" id="navbar">
     <script type="text/javascript">
+        function iFrameHeight() {
+            var ifm = document.getElementById("iframe");
+            var subWeb = document.frames ? document.frames["iframe"].document : ifm.contentDocument;
+            if (ifm != null && subWeb != null) {
+                ifm.height = subWeb.body.scrollHeight;
+            }
+        }
         try {
             ace.settings.check('navbar', 'fixed')
         } catch (e) {
@@ -111,7 +118,7 @@
         }
     </script>
 
-    <div class="main-container-inner"  height="100%">
+    <div class="main-container-inner" height="100%">
         <a class="menu-toggler" id="menu-toggler" href="#">
             <span class="menu-text"></span>
         </a>
@@ -120,9 +127,9 @@
         </div>
 
         <div class="main-content">
-            <div class="page-content">
-                <iframe id="iframe" name="main" src="" width="100%" allowtransparency="true"
-                        height="100%" frameborder="0" scrolling="no" style="overflow:visible;"></iframe>
+            <div class="page-content" width="100%" height="100%">
+                <iframe id="iframe" name="main" src="" width="100%" height="100%" allowtransparency="true"
+                        frameborder="0" scrolling="no" style="overflow:visible;" onLoad="iFrameHeight()"></iframe>
             </div><!-- /.page-content -->
         </div><!-- /.main-content -->
     </div><!-- /.main-container-inner -->
@@ -203,16 +210,6 @@
                         }
                     ]
                 }
-//                ,
-//                {
-//                    menuid: "6",
-//                    menuname: "我的账户",
-//                    menuurl: "ljhy_wdzh.html",
-//                    tobarString: "我的账户",
-//                    iconName: "icon-user",
-//                    openState: "",
-//                    activeState: ""
-//                }
             ]
         };
         //模板渲染
@@ -227,78 +224,14 @@
         //初始化
         sideBarBuild();
 
-//        //点击一级菜单
-//        $(document).on('click', '.nav-list>li', function () {
-//            var markid = $(this).data('markid');
-//            _.each(sideBarData.data, function (sideBarDataItem) {
-//                if (sideBarDataItem.menuid == markid) {
-//                    if (sideBarDataItem.subData) {
-//                        _.each(sideBarDataItem.subData, function (sideBarSubDataItem) {
-//                            sideBarSubDataItem.activeState = '';
-//                        });
-//                        if (sideBarDataItem.openState == 'open') {
-//                            sideBarDataItem.openState = '';
-//                        } else {
-//                            sideBarDataItem.openState = 'open';
-//                        }
-//                        if (sideBarDataItem.activeState == 'active') {
-//                            sideBarDataItem.activeState = '';
-//                        } else {
-//                            sideBarDataItem.activeState = 'active';
-//                        }
-//                    } else {
-//                        sideBarDataItem.activeState = 'active';
-//                    }
-//                } else {
-//                    sideBarDataItem.openState = '';
-//                    sideBarDataItem.activeState = '';
-//                }
-//                sideBarBuild();
-//            })
-//        });
-//
-//        //点击submenu子菜单
-//        $(document).on('click', '.nav-list>li .submenu>li', function () {
-//            var markid = $(this).data('markid');
-//            _.each(sideBarData.data, function (sideBarDataItem) {
-//                _.each(sideBarDataItem.subData, function (sideBarSubDataItem) {
-//                    if (sideBarSubDataItem.menuid == markid) {
-//                        _.each(sideBarData.data, function (sideBarDataItem) {
-//                            sideBarDataItem.activeState = '';
-//                        });
-//                        sideBarDataItem.activeState = 'active';
-//                        sideBarSubDataItem.activeState = 'active';
-//                    } else {
-//                        sideBarSubDataItem.activeState = '';
-//                    }
-//                });
-//            });
-//            sideBarBuild();
-//            return false;
-//        });
-
         //点击跳转
         $(document).on('click', '.nav-list a', function () {
             // setTab(this);
-            changeSrc($(this).attr("menuurl"));
+            document.getElementById("iframe").src =$(this).attr("menuurl");
         });
-
-        //点击折叠
-//        $(document).on('click', '#sidebar-collapse', function () {
-//            var collapseIcon = $(this).children('i');
-//            if ($("#sidebar").hasClass('menu-min')) {
-//                $("#sidebar").removeClass('menu-min');
-//                collapseIcon.attr('class', 'icon-double-angle-left');
-//            } else {
-//                $("#sidebar").addClass('menu-min');
-//                collapseIcon.attr('class', 'icon-double-angle-right');
-//            }
-//        });
-
-        function changeSrc(link) {
-            document.getElementById("iframe").src = link;
-        }
     })
+
+
 </script>
 
 <script id="_sidebarTpl" type="text/html">
