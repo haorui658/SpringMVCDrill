@@ -15,17 +15,17 @@
     <div class="row" style="padding: 15px">
         <form action="/http/save" method="post">
             <div class="form-group">
-            <#if $editInfo?? > <label for="Id">ID</label>
+            <#if editInfo?? > <label for="Id">ID</label>
                 <input class="form-control" type="text" name="Id" id="Id" readonly="readonly"
                        value="${editInfo.id}"></#if>
                 <label for="categoryId">类别</label>
-                <input class="form-control" type="text" name="category" id="categoryId"<#if $editInfo??>
+                <input class="form-control" type="text" name="category" id="categoryId"<#if editInfo??>
                        value="${editInfo.category}"</#if>>
                 <label for="nameId">名称</label>
-                <input class="form-control" type="text" name="name" id="nameId"<#if $editInfo??>
+                <input class="form-control" type="text" name="name" id="nameId"<#if editInfo??>
                        value="${editInfo.name}"</#if>>
                 <label for="urlId">URL</label>
-                <input class="form-control" type="text" name="url" id="urlId"<#if $editInfo??>
+                <input class="form-control" type="text" name="url" id="urlId"<#if editInfo??>
                        value="${editInfo.url}"</#if>>
                 <label for="methodId">Method</label>
                 <select name="method" id="methodId" class="form-control">
@@ -33,14 +33,14 @@
                     <option value="GET">GET</option>
                 </select>
                 <label for="cookieTypeId">Cookie类型</label>
-                <input class="form-control" type="text" name="cookieType" id="cookieTypeId"<#if $editInfo??>
-                       value="$!{editInfo.cookieType}"</#if>>
+                <input class="form-control" type="text" name="cookieType" id="cookieTypeId"<#if editInfo??>
+                       value="${editInfo.cookieType!}"</#if>>
                 <label for="createrId">创建人</label>
-                <input class="form-control" type="text" name="creater" id="createrId"<#if $editInfo??>
+                <input class="form-control" type="text" name="creater" id="createrId"<#if editInfo??>
                        value="${editInfo.creater}"</#if>>
                 <label for="remarkId">备注</label>
-                <input class="form-control" type="text" name="remark" id="remarkId"<#if $editInfo??>
-                       value="${editInfo.remark}"</#if>>
+                <input class="form-control" type="text" name="remark" id="remarkId"<#if editInfo??>
+                       value="${editInfo.remark!}"</#if>>
 
                 <p class="help-block">Example block-level help text here.</p>
             </div>

@@ -38,7 +38,7 @@
     </div>
 
     <div class="row">
-        <textarea id="response" class="form-control" rows="20">$!{uimResponse}</textarea>
+        <textarea id="response" class="form-control" rows="20"><#if uimResponse??>${uimResponse}</#if></textarea>
     </div>
 </div>
 <script>

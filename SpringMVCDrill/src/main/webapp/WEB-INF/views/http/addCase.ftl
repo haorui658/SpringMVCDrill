@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container" style="padding: 15px">
-<#if (editInfo.id)??>
+<#if editInfo.id??>
     <div class="row">
         <label for="Id">ID</label>
         <input class="form-control" type="text" name="id" id="Id" readonly="readonly"
@@ -48,7 +48,7 @@
 
         <label for="expectResponseId">期望结果</label>
         <textarea class="form-control" rows="8" name="expectResponse"
-                  id="expectResponseId"></textarea>
+                  id="expectResponseId">${editInfo.expectResponse?html}</textarea>
     </div>
 </div>
 <div class="row">
@@ -69,15 +69,10 @@
     <#if (editInfo.requestParameter)??>
         editor.setValue(JSON.stringify(${editInfo.requestParameter}));
     </#if>
-    <#if editInfo.expectResponse!="">
-        var textarea = $('#expectResponseId');
-        var htmlstr = '${editInfo.expectResponse?html}';
-        textarea.val(htmlstr);
-    </#if>
 
         $("#invoke").click(function () {
             $("#expectResponseId").val("");
-            var parameter = $("#parameterId").val();
+            var parameter = editor.getSession().getValue();
             $.ajax({
                 async: true,
                 type: "POST",
