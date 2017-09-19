@@ -110,7 +110,7 @@
     </div><!-- /.container -->
 </div>
 
-<div class="main-container" id="main-container" height="100%">
+<div class="main-container" id="main-container">
     <script type="text/javascript">
         try {
             ace.settings.check('main-container', 'fixed')
@@ -118,7 +118,7 @@
         }
     </script>
 
-    <div class="main-container-inner" height="100%">
+    <div class="main-container-inner">
         <a class="menu-toggler" id="menu-toggler" href="#">
             <span class="menu-text"></span>
         </a>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="main-content">
-            <div class="page-content" width="100%" height="100%">
+            <div class="page-content" width="100%">
                 <iframe id="iframe" name="main" src="" width="100%" height="100%" allowtransparency="true"
                         frameborder="0" scrolling="no" style="overflow:visible;" onLoad="iFrameHeight()"></iframe>
             </div><!-- /.page-content -->
@@ -299,6 +299,20 @@
 </script>
 <#--需要放在最后面-->
 <script src="/static/assets/js/ace.min.js"></script>
-
+<script type="text/javascript">
+    // 计算页面的实际高度，iframe自适应会用到
+    function calcPageHeight(doc) {
+        var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight);
+        var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+        var height  = Math.max(cHeight, sHeight);
+        return height
+    }
+    var ifr = document.getElementById('iframe');
+    ifr.onload = function() {
+        var iDoc = ifr.contentDocument || ifr.document
+        var height = calcPageHeight(iDoc);
+        ifr.style.height = height + 'px'
+    }
+</script>
 </body>
 </html>
